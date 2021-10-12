@@ -1,18 +1,22 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
 type SiteMetaData = {
-  title: string;
-  author: {
-    name: string;
-    email: string;
-    github: string;
+  site: {
+    siteMetadata: {
+      title: string;
+      author: {
+        name: string;
+        email: string;
+        github: string;
+      };
+      description: string;
+      siteUrl: string;
+    };
   };
-  description: string;
-  siteUrl: string;
 };
 
-const useSiteMetaData = (): SiteMetaData => {
-  const data = useStaticQuery(graphql`
+const useSiteMetaData = () => {
+  const data = useStaticQuery<SiteMetaData>(graphql`
     query SiteMetaDataQuery {
       site {
         siteMetadata {
