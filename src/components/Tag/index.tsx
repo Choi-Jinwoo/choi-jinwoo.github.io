@@ -6,7 +6,7 @@ const Container = styled.span`
   width: fit-content;
   padding: 8px 4px;
   border-radius: 4px;
-  background-color: ${props => props.theme.colors.gray2};
+  background-color: ${props => props.theme.colors.gray1};
   color: ${props => props.theme.colors.gray7};
 `;
 
