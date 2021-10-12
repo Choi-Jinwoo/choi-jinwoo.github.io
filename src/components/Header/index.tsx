@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Link } from 'gatsby';
 
 const Container = styled.header`
-  padding: 16px;
+  padding: 32px;
 `;
 
 const Inner = styled.div`
