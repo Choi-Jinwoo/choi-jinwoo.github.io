@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Container = styled.span`
   display: inline-block;
   width: fit-content;
-  padding: 8px 4px;
+  padding: 4px 8px;
   border-radius: 4px;
   background-color: ${props => props.theme.colors.gray1};
   color: ${props => props.theme.colors.gray7};
