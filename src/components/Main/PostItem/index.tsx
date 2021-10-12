@@ -1,3 +1,4 @@
+import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import { Post } from '../../../hooks/useAllPosts';
@@ -62,21 +63,25 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
-  const tagItems = post.frontmatter.tags.map(tag => <Tag tag={tag} />);
+  const tagItems = post.frontmatter.tags.map((tag, index) => (
+    <Tag key={index} tag={tag} />
+  ));
 
   return (
-    <Container>
-      <ThumbnailWrapper>
-        <Thumbnail src={post.frontmatter.thumbnail} />
-      </ThumbnailWrapper>
+    <Link to="/">
+      <Container>
+        <ThumbnailWrapper>
+          <Thumbnail src={post.frontmatter.thumbnail} />
+        </ThumbnailWrapper>
 
-      <PostInfoWrapper>
-        <Tags>{tagItems}</Tags>
-        <Title>{post.frontmatter.title}</Title>
-        <Description>{post.frontmatter.description}</Description>
-        <Date>{post.frontmatter.date}</Date>
-      </PostInfoWrapper>
-    </Container>
+        <PostInfoWrapper>
+          <Tags>{tagItems}</Tags>
+          <Title>{post.frontmatter.title}</Title>
+          <Description>{post.frontmatter.description}</Description>
+          <Date>{post.frontmatter.date}</Date>
+        </PostInfoWrapper>
+      </Container>
+    </Link>
   );
 };
 
