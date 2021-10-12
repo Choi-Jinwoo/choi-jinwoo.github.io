@@ -5,8 +5,7 @@ import Tag from '../../Tag';
 
 const Container = styled.article`
   width: 360px;
-  height: 500px;
-  // background-color: red;
+  height: 450px;
 `;
 
 const ThumbnailWrapper = styled.div`
