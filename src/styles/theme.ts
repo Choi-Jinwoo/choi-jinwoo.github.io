@@ -20,9 +20,14 @@ const sizes = {
   tiny: '0.5rem',
 };
 
+const inner = {
+  desktop: '1200px',
+};
+
 export const theme = {
   colors,
   sizes,
+  inner,
 };
 
 export type Theme = typeof theme;
