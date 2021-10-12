@@ -75,7 +75,7 @@ type Props = {
 const Header = ({ path }) => {
   const { title, description } = useSiteMetaData();
 
-  const MenuItems = MENUS.map(menu => (
+  const menuItems = MENUS.map(menu => (
     <Link to={menu.to} key={menu.to}>
       <Menu selected={path === menu.to}>{menu.name}</Menu>
     </Link>
@@ -93,7 +93,7 @@ const Header = ({ path }) => {
 
         <InnerItem>
           <MenuWrapper>
-            <Menus>{MenuItems}</Menus>
+            <Menus>{menuItems}</Menus>
           </MenuWrapper>
         </InnerItem>
       </Inner>
