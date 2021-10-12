@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalStyle from '../../styles/GlobalStyle';
-import theme from '../../styles/theme';
+import { theme } from '../../styles/theme';
 
 type Props = {
   children?: JSX.Element | JSX.Element[];
