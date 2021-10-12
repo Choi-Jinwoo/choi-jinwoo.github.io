@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 
@@ -8,8 +9,10 @@ type Props = {
 
 const Layout = ({ children }: Props) => (
   <>
-    <GlobalStyle theme={theme} />
-    {children}
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      {children}
+    </ThemeProvider>
   </>
 );
 
