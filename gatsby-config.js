@@ -1,17 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: `wlswoo`,
+    title: `꼬꼬마의 기술블로그`,
     author: {
       name: `최진우`,
       email: `dev.chlwlsdn0828@gmail.com`,
       github: `https://github.com/Choi-Jinwoo`,
     },
-    description: `꼬꼬마의 기술블로그`,
+    description: `이곳에 부제를 달아주세요`,
     siteUrl: `http://localhost:8000`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,8 +26,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-mdx`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -41,5 +38,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`,
       },
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
   ],
 };
