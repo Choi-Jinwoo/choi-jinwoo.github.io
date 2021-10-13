@@ -4,6 +4,7 @@ import Image, { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
 import { Post } from '../../../hooks/useAllPosts';
 import Tag from '../../Tag';
+import useSiteMetaData from '../../../hooks/useSiteMetaData';
 
 const Container = styled.article`
   position: relative;
@@ -101,9 +102,11 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
+  const { siteUrl } = useSiteMetaData();
+
   const handleCopyURLClick: MouseEventHandler = e => {
     e.preventDefault();
-    // TODO: Copy post URL logic
+    navigator.clipboard.writeText(`${siteUrl}/post/${post.slug}`);
   };
 
   const tagItems = post.frontmatter.tags.map((tag, index) => (
