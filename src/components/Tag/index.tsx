@@ -1,20 +1,36 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const Container = styled.span`
+type Sizes = 'medium' | 'small';
+
+type ContainerProps = {
+  size: Sizes;
+};
+
+const Container = styled.span<ContainerProps>`
   display: inline-block;
   width: fit-content;
   padding: 4px 8px;
   border-radius: 4px;
   background-color: ${props => props.theme.colors.gray1};
   color: ${props => props.theme.colors.gray7};
+
   font-size: ${props => props.theme.sizes.small};
+
+  ${props =>
+    props.size === 'medium' &&
+    css`
+      font-size: ${props => props.theme.sizes.regular};
+    `}
 `;
 
 type Props = {
   tag: string;
+  size?: Sizes;
 };
 
-const Tag = ({ tag }: Props) => <Container>#{tag}</Container>;
+const Tag = ({ tag, size = 'small' }: Props) => (
+  <Container size={size}>#{tag}</Container>
+);
 
 export default Tag;
