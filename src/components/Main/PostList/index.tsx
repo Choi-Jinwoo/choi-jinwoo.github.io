@@ -8,7 +8,7 @@ const Container = styled.section`
   width: ${props => props.theme.inner.desktop};
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 60px;
+  column-gap: calc((${props => props.theme.inner.desktop} - 360px * 3) / 2);
   row-gap: 20px;
 `;
 
