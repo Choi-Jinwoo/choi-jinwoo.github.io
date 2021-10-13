@@ -18,7 +18,7 @@ const postFadeIn = keyframes`
 const Container = styled.section`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: calc((${props => props.theme.inner.desktop} - 360px * 3) / 2);
+  column-gap: calc((${props => props.theme.inner.width} - 360px * 3) / 2);
   row-gap: 20px;
   animation: ${postFadeIn} 1s;
 `;

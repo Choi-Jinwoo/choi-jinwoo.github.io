@@ -11,7 +11,7 @@ const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${props => props.theme.inner.desktop};
+  width: ${props => props.theme.inner.width};
   margin: 0 auto;
 `;
 

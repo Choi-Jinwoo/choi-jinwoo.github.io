@@ -11,6 +11,7 @@ const colors = {
 };
 
 const sizes = {
+  xxxLarge: '2.5rem',
   xxLarge: '2rem',
   xLarge: '1.75rem',
   large: '1.5rem',
@@ -21,7 +22,7 @@ const sizes = {
 };
 
 const inner = {
-  desktop: '1200px',
+  width: '1200px',
 };
 
 export const theme = {
