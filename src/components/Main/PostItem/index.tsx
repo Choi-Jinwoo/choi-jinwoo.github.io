@@ -44,7 +44,12 @@ const Tags = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: ${props => props.theme.sizes.large};
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: ${props => props.theme.sizes.medium};
   font-weight: bold;
   margin: 16px 0px 8px 0px;
 `;
@@ -54,13 +59,15 @@ const Description = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  color: ${props => props.theme.colors.gray6};
+  color: ${props => props.theme.colors.gray3};
   text-overflow: ellipsis;
   margin-bottom: 8px;
+  font-size: ${props => props.theme.sizes.small};
 `;
 
 const Date = styled.span`
   font-size: ${props => props.theme.sizes.small};
+  color: ${props => props.theme.colors.gray4};
 `;
 
 type Props = {
