@@ -8,6 +8,7 @@ const Container = styled.span`
   border-radius: 4px;
   background-color: ${props => props.theme.colors.gray1};
   color: ${props => props.theme.colors.gray7};
+  font-size: ${props => props.theme.sizes.small};
 `;
 
 type Props = {
