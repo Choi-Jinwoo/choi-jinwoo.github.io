@@ -6,8 +6,36 @@ import { Post } from '../../../hooks/useAllPosts';
 import Tag from '../../Tag';
 
 const Container = styled.article`
+  position: relative;
   width: 360px;
   height: 400px;
+
+  &:hover .post-item-copy-button {
+    display: inherit;
+  }
+
+  &:hover .post-item-thumbnail {
+    transform: scale(1.1);
+  }
+`;
+
+const CopyButton = styled.button.attrs({ className: 'post-item-copy-button' })`
+  display: none;
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  padding: 8px 12px;
+  border: none;
+  background-color: ${props => props.theme.colors.gray1};
+  color: ${props => props.theme.colors.gray6};
+  font-size: ${props => props.theme.sizes.small};
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.theme.colors.gray2};
+  }
 `;
 
 const ThumbnailWrapper = styled.div`
@@ -20,15 +48,13 @@ type ThumbnailProps = {
   fluid: FluidObject | FluidObject[];
 };
 
-const Thumbnail = styled(Image)<ThumbnailProps>`
+const Thumbnail = styled(Image).attrs({
+  className: 'post-item-thumbnail',
+})<ThumbnailProps>`
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: all 0.25s;
-
-  &:hover {
-    transform: scale(1.1);
-  }
 `;
 
 const PostInfoWrapper = styled.div`
@@ -82,6 +108,7 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to="/">
       <Container>
+        <CopyButton>Copy URL</CopyButton>
         <ThumbnailWrapper>
           <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
         </ThumbnailWrapper>
