@@ -40,7 +40,11 @@ const PostStyle = css`
     font-size: 1.125rem;
     line-height: 1.75rem;
     margin: 24px 0px;
-    color: ${props => props.theme.colors.gray6};
+  }
+
+  p,
+  li {
+    color: ${props => props.theme.colors.gray7};
   }
 
   blockquote {
@@ -49,8 +53,6 @@ const PostStyle = css`
     border-left: 5px solid ${props => props.theme.colors.gray3};
     color: ${props => props.theme.colors.gray3};
   }
-
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
   code {
     font-size: 1rem;

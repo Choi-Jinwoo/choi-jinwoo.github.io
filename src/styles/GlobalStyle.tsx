@@ -1,8 +1,17 @@
 import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
-  ${reset}
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+  @import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
+  * {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    list-style: none;
+  }
+
+  * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
 
   body {
     line-height: normal;
