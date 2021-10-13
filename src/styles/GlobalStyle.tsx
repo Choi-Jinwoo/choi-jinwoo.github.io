@@ -17,6 +17,16 @@ const GlobalStyle = createGlobalStyle`
       color: inherit;
     }
   }
+
+  html {
+    @media ${props => props.theme.device.tablet} {
+      font-size: 14px;
+    }
+
+    @media ${props => props.theme.device.mobile} {
+      font-size: 12px;
+    }
+  }
 `;
 
 export default GlobalStyle;

@@ -10,7 +10,7 @@ import PostStyle from '../../styles/postStyle';
 
 const PostContainer = styled.article`
   max-width: 800px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 80px;
 `;

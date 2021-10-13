@@ -11,7 +11,15 @@ type Props = {
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
+
   width: ${props => props.theme.inner.desktop};
+  @media ${props => props.theme.device.tablet} {
+    width: ${props => props.theme.inner.tablet};
+  }
+
+  @media ${props => props.theme.device.mobile} {
+    width: ${props => props.theme.inner.mobile};
+  }
 `;
 
 const Layout = ({ children, path }: Props) => (

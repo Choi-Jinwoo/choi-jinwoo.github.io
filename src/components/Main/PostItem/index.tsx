@@ -11,6 +11,11 @@ const Container = styled.article`
   width: 360px;
   height: 400px;
 
+  @media ${props => props.theme.device.mobile} {
+    width: 100%;
+    height: auto;
+  }
+
   &:hover .post-item-copy-button {
     display: inherit;
   }
@@ -114,8 +119,8 @@ const PostItem = ({ post }: Props) => {
   ));
 
   return (
-    <Link to={`/post/${post.slug}`}>
-      <Container>
+    <Container>
+      <Link to={`/post/${post.slug}`}>
         <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
         <ThumbnailWrapper>
           <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
@@ -127,8 +132,8 @@ const PostItem = ({ post }: Props) => {
           <Description>{post.frontmatter.description}</Description>
           <Date>{post.frontmatter.date}</Date>
         </PostInfoWrapper>
-      </Container>
-    </Link>
+      </Link>
+    </Container>
   );
 };
 

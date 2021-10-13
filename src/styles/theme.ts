@@ -23,13 +23,21 @@ const sizes = {
   tiny: '0.5rem',
 };
 
+const device = {
+  tablet: '(max-width: 1280px)',
+  mobile: '(max-width: 770px)',
+};
+
 const inner = {
   desktop: '1200px',
+  tablet: '750px',
+  mobile: '95%',
 };
 
 export const theme = {
   colors,
   sizes,
+  device,
   inner,
 };
 

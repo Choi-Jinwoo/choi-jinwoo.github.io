@@ -5,14 +5,26 @@ import { Link } from 'gatsby';
 
 const Container = styled.header`
   padding: 32px;
+
+  @media ${props => props.theme.device.mobile} {
+    padding: 16px 8px;
+  }
 `;
 
 const Inner = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${props => props.theme.inner.desktop};
   margin: 0 auto;
+
+  width: ${props => props.theme.inner.desktop};
+  @media ${props => props.theme.device.tablet} {
+    width: ${props => props.theme.inner.tablet};
+  }
+
+  @media ${props => props.theme.device.mobile} {
+    width: ${props => props.theme.inner.mobile};
+  }
 `;
 
 const Title = styled.h1`
