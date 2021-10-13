@@ -3,7 +3,7 @@ import { GatsbyImageFluidProps } from 'gatsby-image';
 
 export type Post = {
   id: string;
-  body: string;
+  slug: string;
   frontmatter: {
     date: string;
     title: string;
@@ -27,7 +27,7 @@ const useAllPosts = () => {
       allMdx(sort: { order: DESC, fields: frontmatter___date }) {
         nodes {
           id
-          body
+          slug
           frontmatter {
             date(formatString: "YYYY.MM.DD.")
             title
