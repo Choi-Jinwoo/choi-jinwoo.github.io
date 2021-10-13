@@ -39,13 +39,15 @@ const PostStyle = css`
   p {
     font-size: 1.125rem;
     line-height: 1.75rem;
+    margin: 24px 0px;
+    color: ${props => props.theme.colors.gray6};
   }
 
   blockquote {
     margin: 12px 0px;
-    padding: 12px 24px;
-    border-left: 5px solid ${props => props.theme.colors.gray5};
-    color: ${props => props.theme.colors.gray5};
+    padding: 4px 24px;
+    border-left: 5px solid ${props => props.theme.colors.gray3};
+    color: ${props => props.theme.colors.gray3};
   }
 
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');

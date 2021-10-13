@@ -11,7 +11,7 @@ type Props = {
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
-  width: ${props => props.theme.inner.width};
+  width: ${props => props.theme.inner.desktop};
 `;
 
 const Layout = ({ children, path }: Props) => (

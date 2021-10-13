@@ -24,7 +24,7 @@ const sizes = {
 };
 
 const inner = {
-  width: '1200px',
+  desktop: '1200px',
 };
 
 export const theme = {

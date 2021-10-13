@@ -57,6 +57,7 @@ const Thumbnail = styled(Image).attrs({
 `;
 
 const PostContentSection = styled.section`
+  margin-top: 60px;
   ${PostStyle};
 `;
 
