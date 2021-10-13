@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Post } from '../../../hooks/useAllPosts';
 import Tag from '../../Tag';
@@ -101,6 +101,11 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
+  const handleCopyURLClick: MouseEventHandler = e => {
+    e.preventDefault();
+    // TODO: Copy post URL logic
+  };
+
   const tagItems = post.frontmatter.tags.map((tag, index) => (
     <Tag key={index} tag={tag} />
   ));
@@ -108,7 +113,7 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to="/">
       <Container>
-        <CopyButton>Copy URL</CopyButton>
+        <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
         <ThumbnailWrapper>
           <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
         </ThumbnailWrapper>
