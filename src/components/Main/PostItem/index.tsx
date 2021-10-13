@@ -1,6 +1,6 @@
+import React, { MouseEventHandler } from 'react';
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
-import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 import { Post } from '../../../hooks/useAllPosts';
 import Tag from '../../Tag';
@@ -111,7 +111,7 @@ const PostItem = ({ post }: Props) => {
   ));
 
   return (
-    <Link to="/">
+    <Link to={`/post/${post.slug}`}>
       <Container>
         <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
         <ThumbnailWrapper>
