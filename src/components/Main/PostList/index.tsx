@@ -1,7 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import useAllPosts from '../../../hooks/useAllPosts';
 import PostItem from '../PostItem';
+
+const postFadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+`;
 
 const Container = styled.section`
   margin: 0 auto;
@@ -10,6 +22,8 @@ const Container = styled.section`
   grid-template-columns: repeat(3, 1fr);
   column-gap: calc((${props => props.theme.inner.desktop} - 360px * 3) / 2);
   row-gap: 20px;
+
+  animation: ${postFadeIn} 1s;
 `;
 
 const PostList = () => {
