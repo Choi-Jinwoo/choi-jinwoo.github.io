@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
+    color: ${props => props.theme.colors.black};
 
     &:visited {
       color: inherit;
