@@ -1,4 +1,5 @@
 import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImageFluidProps } from 'gatsby-image';
 
 export type Post = {
   id: string;
@@ -8,7 +9,9 @@ export type Post = {
     title: string;
     description: string;
     tags: string[];
-    thumbnail: string;
+    thumbnail: {
+      childImageSharp: GatsbyImageFluidProps;
+    };
   };
 };
 
@@ -30,7 +33,13 @@ const useAllPosts = () => {
             title
             description
             tags
-            thumbnail
+            thumbnail {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

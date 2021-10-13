@@ -1,4 +1,5 @@
 import { Link } from 'gatsby';
+import Image, { FluidObject } from 'gatsby-image';
 import React from 'react';
 import styled from 'styled-components';
 import { Post } from '../../../hooks/useAllPosts';
@@ -6,16 +7,20 @@ import Tag from '../../Tag';
 
 const Container = styled.article`
   width: 360px;
-  height: 450px;
+  height: 400px;
 `;
 
 const ThumbnailWrapper = styled.div`
   width: 100%;
-  height: 250px;
+  height: 200px;
   overflow: hidden;
 `;
 
-const Thumbnail = styled.img`
+type ThumbnailProps = {
+  fluid: FluidObject | FluidObject[];
+};
+
+const Thumbnail = styled(Image)<ThumbnailProps>`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -71,7 +76,7 @@ const PostItem = ({ post }: Props) => {
     <Link to="/">
       <Container>
         <ThumbnailWrapper>
-          <Thumbnail src={post.frontmatter.thumbnail} />
+          <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
         </ThumbnailWrapper>
 
         <PostInfoWrapper>
