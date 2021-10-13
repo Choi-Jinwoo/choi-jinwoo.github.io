@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyle from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 import Header from '../Header';
@@ -9,12 +9,17 @@ type Props = {
   path: string;
 };
 
+const ContentWrapper = styled.div`
+  margin: 0 auto;
+  width: ${props => props.theme.inner.desktop};
+`;
+
 const Layout = ({ children, path }: Props) => (
   <>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Header path={path} />
-      {children}
+      <ContentWrapper>{children}</ContentWrapper>
     </ThemeProvider>
   </>
 );
