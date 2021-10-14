@@ -10,7 +10,7 @@ module.exports = {
       github: `https://github.com/Choi-Jinwoo`,
     },
     description: `꼬꼬마의 기술 블로그`,
-    siteUrl: `https://wlswooblog.gatsbyjs.io`,
+    siteUrl: `https://jinu.gatsbyjs.io`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
