@@ -1,2 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
-@import url('https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css');
+
+@font-face {
+  font-family: 'Spoqa Han Sans';
+  font-weight: 700;
+  src: local('Spoqa Han Sans Bold'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansBold.woff2') format('woff2'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Spoqa Han Sans';
+  font-weight: 400;
+  src: url('./fonts/SpoqaHanSans/SpoqaHanSansRegular.woff2') format('woff2'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansRegular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Spoqa Han Sans';
+  font-weight: 300;
+  src: local('Spoqa Han Sans Light'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansLight.woff2') format('woff2'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Spoqa Han Sans';
+  font-weight: 100;
+  src: local('Spoqa Han Sans Thin'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansThin.woff2') format('woff2'),
+    url('./fonts/SpoqaHanSans/SpoqaHanSansThin.woff') format('woff');
+}
