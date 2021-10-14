@@ -1,12 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: `꼬꼬마의 기술블로그`,
+    title: `꼬꼬마 블로그`,
     author: {
       name: `최진우`,
       email: `dev.chlwlsdn0828@gmail.com`,
       github: `https://github.com/Choi-Jinwoo`,
     },
-    description: `이곳에 부제를 달아주세요`,
+    description: `꼬꼬마의 기술 블로그`,
     siteUrl: `http://localhost:8000`,
   },
   plugins: [
@@ -30,12 +30,11 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `꼬꼬마 블로그`,
+        short_name: `wlswoo blog`,
         start_url: `/`,
-        background_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/icon.png`,
       },
     },
     `gatsby-plugin-sharp`,
