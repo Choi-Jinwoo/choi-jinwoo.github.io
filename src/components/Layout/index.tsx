@@ -5,12 +5,6 @@ import GlobalStyle from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 import Header from '../Header';
 
-type Props = {
-  children?: JSX.Element | JSX.Element[];
-  path: string;
-  title: string;
-};
-
 const ContentWrapper = styled.div`
   margin: 0 auto;
 
@@ -24,11 +18,19 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Layout = ({ children, path, title }: Props) => (
+type Props = {
+  children?: JSX.Element | JSX.Element[];
+  path: string;
+  title: string;
+  description?: string;
+};
+
+const Layout = ({ children, path, title, description = '' }: Props) => (
   <>
     <ThemeProvider theme={theme}>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'ko' }}>
         <title>{title}</title>
+        <meta name="description" content={description} />
       </Helmet>
       <GlobalStyle />
       <Header path={path} />
