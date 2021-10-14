@@ -31,6 +31,10 @@ const Layout = ({ children, path, title, description = '' }: Props) => (
       <Helmet htmlAttributes={{ lang: 'ko' }}>
         <title>{title}</title>
         <meta name="description" content={description} />
+        <meta
+          name="google-site-verification"
+          content="vEvU7Ajs0Xs3jma64V2Ctvokx-e0s2q1xkofjRTUBnQ"
+        />
       </Helmet>
       <GlobalStyle />
       <Header path={path} />
