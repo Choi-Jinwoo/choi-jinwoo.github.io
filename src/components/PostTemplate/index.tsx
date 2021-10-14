@@ -54,6 +54,7 @@ const Thumbnail = styled(Image).attrs({
   className: 'post-item-thumbnail',
 })<ThumbnailProps>`
   width: 100%;
+  border-radius: 8px;
 `;
 
 const PostContentSection = styled.section`
