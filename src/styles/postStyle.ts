@@ -82,6 +82,7 @@ const PostStyle = css`
     margin: 16px 0px;
 
     li {
+      width: calc(100% - 28px);
       margin: 8px 0px;
       left: 28px;
       position: relative;
