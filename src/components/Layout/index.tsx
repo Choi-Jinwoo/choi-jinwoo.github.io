@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Helmet } from 'react-helmet';
 import GlobalStyle from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 import Header from '../Header';
@@ -7,6 +8,7 @@ import Header from '../Header';
 type Props = {
   children?: JSX.Element | JSX.Element[];
   path: string;
+  title: string;
 };
 
 const ContentWrapper = styled.div`
@@ -22,9 +24,12 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Layout = ({ children, path }: Props) => (
+const Layout = ({ children, path, title }: Props) => (
   <>
     <ThemeProvider theme={theme}>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
       <GlobalStyle />
       <Header path={path} />
       <ContentWrapper>{children}</ContentWrapper>
