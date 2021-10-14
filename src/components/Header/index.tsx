@@ -75,7 +75,7 @@ const MENUS = [
     name: '블로그',
   },
   {
-    to: '/about',
+    to: 'https://github.com/Choi-Jinwoo',
     name: '소개',
   },
 ];
