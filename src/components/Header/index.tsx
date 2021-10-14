@@ -84,13 +84,13 @@ type Props = {
   path: string;
 };
 
-const Header = ({ path }) => {
+const Header = ({ path }: Props) => {
   const { title, description } = useSiteMetaData();
 
   const menuItems = MENUS.map(menu => (
-    <Link to={menu.to} key={menu.to}>
-      <Menu selected={path === menu.to}>{menu.name}</Menu>
-    </Link>
+    <Menu selected={path === menu.to} key={menu.to}>
+      <Link to={menu.to}>{menu.name}</Link>
+    </Menu>
   ));
 
   return (

@@ -76,7 +76,7 @@ const PostPage = ({ data }: Props) => {
   ));
 
   return (
-    <Layout path="/post" title={title}>
+    <Layout path="/post" title={title} description={description}>
       <PostContainer>
         <PostTitleSection>
           <Title>{title}</Title>
