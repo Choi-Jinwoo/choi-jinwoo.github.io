@@ -18,10 +18,18 @@ const Container = styled.article`
 
   &:hover .post-item-copy-button {
     display: inherit;
+
+    @media ${props => props.theme.device.mobile} {
+      display: none;
+    }
   }
 
   &:hover .post-item-thumbnail {
     transform: scale(1.1);
+
+    @media ${props => props.theme.device.mobile} {
+      transform: none;
+    }
   }
 `;
 
