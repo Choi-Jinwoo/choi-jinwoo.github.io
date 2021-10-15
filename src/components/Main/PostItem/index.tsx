@@ -48,6 +48,7 @@ const ThumbnailWrapper = styled.div`
   width: 100%;
   height: 200px;
   overflow: hidden;
+  border-radius: 4px;
 `;
 
 type ThumbnailProps = {
