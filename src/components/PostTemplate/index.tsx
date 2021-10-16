@@ -87,7 +87,7 @@ const PostPage = ({ data }: Props) => {
       imageSrc = thumbnail.childImageSharp.fluid.src;
     }
 
-    return `${siteUrl}/${imageSrc}`;
+    return `${siteUrl}${imageSrc}`;
   };
 
   return (
