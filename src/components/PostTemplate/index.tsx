@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import { Post } from '../../hooks/useAllPosts';
 import Layout from '../Layout';
@@ -9,7 +9,9 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Tag from '../Tag';
 import PostStyle from '../../styles/postStyle';
 import useSiteMetaData from '../../hooks/useSiteMetaData';
+import useAppendUtterances from '../../hooks/useAppendUtterances';
 import CodeBlock from './CodeBlock';
+import PostComment from '../PostComment';
 
 const PostContainer = styled.article`
   max-width: 800px;
@@ -63,6 +65,10 @@ const Thumbnail = styled(Image).attrs({
 const PostContentSection = styled.section`
   margin-top: 60px;
   ${PostStyle};
+`;
+
+const CommentSection = styled.section`
+  margin-top: 40px;
 `;
 
 type Props = {
@@ -119,6 +125,10 @@ const PostPage = ({ data }: Props) => {
             <MDXRenderer>{body}</MDXRenderer>
           </MDXProvider>
         </PostContentSection>
+
+        <CommentSection>
+          <PostComment />
+        </CommentSection>
       </PostContainer>
     </Layout>
   );
