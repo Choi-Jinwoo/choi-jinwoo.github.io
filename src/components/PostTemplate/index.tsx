@@ -4,10 +4,12 @@ import { Post } from '../../hooks/useAllPosts';
 import Layout from '../Layout';
 import styled from 'styled-components';
 import Image, { FluidObject } from 'gatsby-image';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Tag from '../Tag';
 import PostStyle from '../../styles/postStyle';
 import useSiteMetaData from '../../hooks/useSiteMetaData';
+import CodeBlock from './CodeBlock';
 
 const PostContainer = styled.article`
   max-width: 800px;
@@ -109,7 +111,13 @@ const PostPage = ({ data }: Props) => {
 
         <Thumbnail fluid={thumbnail.childImageSharp.fluid} />
         <PostContentSection>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXProvider
+            components={{
+              pre: CodeBlock,
+            }}
+          >
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
         </PostContentSection>
       </PostContainer>
     </Layout>
