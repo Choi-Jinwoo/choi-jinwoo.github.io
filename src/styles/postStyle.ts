@@ -54,7 +54,8 @@ const PostStyle = css`
     color: ${props => props.theme.colors.gray3};
   }
 
-  code {
+  code,
+  pre * {
     font-size: 1rem;
     font-family: 'IBM Plex Mono', monospace;
   }
