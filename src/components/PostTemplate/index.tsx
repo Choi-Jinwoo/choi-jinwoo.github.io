@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { graphql } from 'gatsby';
 import { Post } from '../../hooks/useAllPosts';
 import Layout from '../Layout';
 import styled from 'styled-components';
 import Image, { FluidObject } from 'gatsby-image';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Tag from '../Tag';
 import PostStyle from '../../styles/postStyle';
+import useSiteMetaData from '../../hooks/useSiteMetaData';
+import useAppendUtterances from '../../hooks/useAppendUtterances';
+import CodeBlock from './CodeBlock';
+import PostComment from '../PostComment';
 
 const PostContainer = styled.article`
   max-width: 800px;
@@ -62,6 +67,10 @@ const PostContentSection = styled.section`
   ${PostStyle};
 `;
 
+const CommentSection = styled.section`
+  margin-top: 40px;
+`;
+
 type Props = {
   data: {
     mdx: { body: string } & Post;
@@ -71,13 +80,31 @@ type Props = {
 const PostPage = ({ data }: Props) => {
   const { body } = data.mdx;
   const { title, description, tags, date, thumbnail } = data.mdx.frontmatter;
+  const { siteUrl } = useSiteMetaData();
 
   const tagItems = tags.map((tag, index) => (
     <Tag key={index} size="medium" tag={tag} />
   ));
 
+  const composePostImagePath = () => {
+    let imageSrc = '';
+
+    if (Array.isArray(thumbnail.childImageSharp.fluid)) {
+      imageSrc = thumbnail.childImageSharp.fluid[0].src;
+    } else {
+      imageSrc = thumbnail.childImageSharp.fluid.src;
+    }
+
+    return `${siteUrl}${imageSrc}`;
+  };
+
   return (
-    <Layout path="/post" title={title} description={description}>
+    <Layout
+      path="/post"
+      title={title}
+      description={description}
+      image={composePostImagePath()}
+    >
       <PostContainer>
         <PostTitleSection>
           <Title>{title}</Title>
@@ -90,8 +117,18 @@ const PostPage = ({ data }: Props) => {
 
         <Thumbnail fluid={thumbnail.childImageSharp.fluid} />
         <PostContentSection>
-          <MDXRenderer>{body}</MDXRenderer>
+          <MDXProvider
+            components={{
+              pre: CodeBlock,
+            }}
+          >
+            <MDXRenderer>{body}</MDXRenderer>
+          </MDXProvider>
         </PostContentSection>
+
+        <CommentSection>
+          <PostComment />
+        </CommentSection>
       </PostContainer>
     </Layout>
   );
