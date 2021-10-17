@@ -43,7 +43,7 @@ const Layout = ({ children, path, title, description, image }: Props) => {
           <meta property="og:site_name" content={siteName} />
           <meta
             name="google-site-verification"
-            content="vEvU7Ajs0Xs3jma64V2Ctvokx-e0s2q1xkofjRTUBnQ"
+            content="XuYZDwUE6RHYN-MpEJhfTnegOVDz8jolBYYFBZT1A1I"
           />
         </Helmet>
         <GlobalStyle />
