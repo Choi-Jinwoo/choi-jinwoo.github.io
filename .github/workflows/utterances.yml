@@ -1,0 +1,11 @@
+name: Close utterances issue
+on:
+  issues:
+    types: [labeled]
+jobs:
+  close-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - if: github.event.label.name == 'utterances'
+        name: Close Issue
+        uses: peter-evans/close-issue@v1
