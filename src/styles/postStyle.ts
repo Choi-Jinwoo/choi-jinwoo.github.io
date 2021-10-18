@@ -48,16 +48,24 @@ const PostStyle = css`
   }
 
   blockquote {
-    margin: 12px 0px;
+    margin: 24px 0px;
     padding: 4px 24px;
-    border-left: 5px solid ${props => props.theme.colors.gray3};
-    color: ${props => props.theme.colors.gray3};
+    border-left: 5px solid ${props => props.theme.colors.gray5};
+  }
+
+  blockquote p {
+    margin: 4px 0px;
+    color: ${props => props.theme.colors.gray5};
   }
 
   code,
   pre * {
     font-size: 1rem;
     font-family: 'IBM Plex Mono', monospace;
+  }
+
+  pre .token-line {
+    padding: 0.1rem 0px;
   }
 
   code:not(pre code) {
