@@ -13,27 +13,27 @@ const PostStyle = css`
 
   h1 {
     font-size: 2.5rem;
-    margin: 3rem 0px 10px 0px;
+    margin: 3.5rem 0px 10px 0px;
   }
 
   h2 {
     font-size: 2.25rem;
-    margin: 2.5rem 0px 8px 0px;
+    margin: 3rem 0px 8px 0px;
   }
 
   h3 {
     font-size: 2rem;
-    margin: 2rem 0px 6px 0px;
+    margin: 2.5rem 0px 6px 0px;
   }
 
   h4 {
     font-size: 1.75rem;
-    margin: 1.5rem 0px;
+    margin: 2rem 0px;
   }
 
   h5 {
     font-size: 1.5rem;
-    margin: 1rem 0px 2px 0px;
+    margin: 1.5rem 0px 2px 0px;
   }
 
   p {
