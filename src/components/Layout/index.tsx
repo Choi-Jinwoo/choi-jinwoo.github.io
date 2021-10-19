@@ -1,10 +1,9 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Helmet } from 'react-helmet';
 import GlobalStyle from '../../styles/GlobalStyle';
 import { theme } from '../../styles/theme';
 import Header from '../Header';
-import useSiteMetaData from '../../hooks/useSiteMetaData';
+import SEO from '../SEO';
 
 const ContentWrapper = styled.div`
   margin: 0 auto;
@@ -28,24 +27,10 @@ type Props = {
 };
 
 const Layout = ({ children, path, title, description, image }: Props) => {
-  const { title: siteName, siteUrl } = useSiteMetaData();
-
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Helmet htmlAttributes={{ lang: 'ko' }}>
-          <title>{title}</title>
-          <meta name="description" content={description} />
-          <meta property="og:title" content={title} />
-          <meta property="og:description" content={description} />
-          <meta property="og:url" content={siteUrl} />
-          <meta property="og:image" content={image} />
-          <meta property="og:site_name" content={siteName} />
-          <meta
-            name="google-site-verification"
-            content="XuYZDwUE6RHYN-MpEJhfTnegOVDz8jolBYYFBZT1A1I"
-          />
-        </Helmet>
+        <SEO title={title} description={description} image={image} />
         <GlobalStyle />
         <Header path={path} />
         <ContentWrapper>{children}</ContentWrapper>

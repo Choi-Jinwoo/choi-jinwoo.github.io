@@ -4,10 +4,10 @@ import PostList from '../components/Main/PostList';
 import useSiteMetaData from '../hooks/useSiteMetaData';
 
 const IndexPage = () => {
-  const { title, description } = useSiteMetaData();
+  const { description } = useSiteMetaData();
 
   return (
-    <Layout path="/" title={title} description={description}>
+    <Layout path="/" title="홈" description={description}>
       <PostList />
     </Layout>
   );
