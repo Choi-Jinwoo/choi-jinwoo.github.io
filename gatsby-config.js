@@ -58,5 +58,48 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+            }
+          }
+        }
+        `,
+        feeds: [
+          {
+            title: '꼬꼬마 블로그 RSS',
+            output: '/rss.xml',
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.nodes.map(node => {
+                return Object.assign({}, node.frontmatter, {
+                  url: `${site.siteMetadata.siteUrl}/post/${node.slug}`,
+                  guid: `${site.siteMetadata.siteUrl}/post/${node.slug}`,
+                });
+              });
+            },
+            query: `
+            {
+              allMdx(sort: { order: DESC, fields: frontmatter___date }) {
+                nodes {
+                  slug
+                  frontmatter {
+                    title
+                    date
+                  }
+                }
+              }
+            }
+            `,
+          },
+        ],
+      },
+    },
   ],
 };

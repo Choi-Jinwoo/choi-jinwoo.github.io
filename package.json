@@ -10,6 +10,7 @@
     "@types/styled-components": "^5.1.15",
     "gatsby": "^3.13.1",
     "gatsby-image": "^3.11.0",
+    "gatsby-plugin-feed": "^4.1.0",
     "gatsby-plugin-manifest": "^3.13.0",
     "gatsby-plugin-mdx": "^2.14.0",
     "gatsby-plugin-offline": "^4.13.0",
