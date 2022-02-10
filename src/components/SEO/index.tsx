@@ -30,11 +30,6 @@ const SEO = ({ title, description, image }: Props) => {
       <meta name="twitter:title" content={title} />
       {description && <meta name="twitter:description" content={title} />}
       {image && <meta name="twitter:image" content={image} />}
-
-      <meta
-        name="google-site-verification"
-        content="XuYZDwUE6RHYN-MpEJhfTnegOVDz8jolBYYFBZT1A1I"
-      />
     </Helmet>
   );
 };
