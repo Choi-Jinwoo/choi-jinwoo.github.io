@@ -15,6 +15,7 @@ const SEO = ({ title, description, image }: Props) => {
 
   return (
     <Helmet htmlAttributes={{ lang: 'ko' }}>
+      <meta name="google-site-verification" content="OcnXdUUNsAO3CBwMY8M6UhsFHS6WPTItnUjfEZ00V5w" />
       <title>
         {title} | {siteName}
       </title>
