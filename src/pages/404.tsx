@@ -9,21 +9,32 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 80px;
+  gap: 8px;
 `;
 
-const NotfoundText = styled.p`
-  font-size: ${props => props.theme.sizes.large};
+const Title = styled.h1`
+  font-size: ${props => props.theme.sizes.xxxLarge};
   color: ${props => props.theme.colors.gray7};
   font-weight: bold;
 `;
 
-const ToIndexPageText = styled.span`
-  display: inline-block;
+const Description = styled.p`
+  font-size: ${props => props.theme.sizes.regular};
   color: ${props => props.theme.colors.gray5};
-  margin-top: 40px;
+  margin-bottom: 40px;
+`;
+
+const GoBackButton = styled.button`
+  width: 160px;
+  height: 40px;
+  border: none;
+  background-color: ${props => props.theme.colors.gray7};
+  color: ${props => props.theme.colors.white};
+  border-radius: 4px;
+  cursor: pointer;
 
   &:hover {
-    color: ${props => props.theme.colors.gray3};
+    background-color: ${props => props.theme.colors.gray6};
   }
 `;
 
@@ -31,9 +42,10 @@ const NotfoundPage = () => {
   return (
     <Layout path="/notfound" title="페이지를 찾을 수 없습니다">
       <Container>
-        <NotfoundText>페이지가 없네요 :(</NotfoundText>
+        <Title>404</Title>
+        <Description>Sorry, we could not find this page.</Description>
         <Link to="/">
-          <ToIndexPageText>홈으로</ToIndexPageText>
+          <GoBackButton>Go back home</GoBackButton>
         </Link>
       </Container>
     </Layout>
