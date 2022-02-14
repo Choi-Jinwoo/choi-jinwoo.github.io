@@ -57,7 +57,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-advanced-sitemap`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        sitemap: 	`/sitemap.xml`,
+      },
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
