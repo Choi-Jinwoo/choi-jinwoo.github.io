@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled, { keyframes } from 'styled-components';
-import useAllPosts from '../../../hooks/useAllPosts';
+import useAllPosts, { Post } from '../../../hooks/useAllPosts';
+import { parseQuerystring } from '../../../utils/query';
+import EmptyPost from '../../EmptyPost';
 import PostItem from '../PostItem';
 
 const postFadeIn = keyframes`
@@ -16,6 +18,32 @@ const postFadeIn = keyframes`
 `;
 
 const Container = styled.section`
+`;
+
+const SearchContainer = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+`;
+
+const SearchInput = styled.input`
+  border: 1px solid ${props => props.theme.colors.gray2};
+  background-color: ${props => props.theme.colors.gray0};
+  border-radius: 8px;
+  height: 32px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  width: 200px;
+  outline: none;
+  color: ${props => props.theme.colors.gray6};
+
+  &:focus {
+    border-color: ${props => props.theme.colors.gray3};
+  }
+`;
+
+const PostContainer = styled.section`
   display: grid;
   row-gap: 20px;
   animation: ${postFadeIn} 1s;
@@ -33,12 +61,47 @@ const Container = styled.section`
   }
 `;
 
+const isMatchPost = (post: Post, keyword: string) => {
+  const { title, tags } = post.frontmatter;
+  if (title.toLowerCase().includes(keyword.toLowerCase())) return true;
+
+  return tags.some((tag) => tag.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+const SEARCH_KEYWORD_QUERY_KEY = 'q';
+
 const PostList = () => {
+  const [searchKeyword, setSearchKeyword] = useState<string>('');
   const posts = useAllPosts();
 
-  const postItems = posts.map(post => <PostItem key={post.id} post={post} />);
+  useEffect(() => {
+    const searchKeywordInQuerystring = parseQuerystring(location.search, SEARCH_KEYWORD_QUERY_KEY);
+    if (searchKeywordInQuerystring === null) return;
 
-  return <Container>{postItems}</Container>;
+    setSearchKeyword(searchKeywordInQuerystring);
+  }, []);
+
+  useEffect(() => {
+    // Sync querystring and searchKeyword state
+    history.pushState({}, null, `?${SEARCH_KEYWORD_QUERY_KEY}=${searchKeyword}`);
+  }, [searchKeyword])
+
+  const searchedPosts = searchKeyword !== '' ? posts.filter((post) => isMatchPost(post, searchKeyword)) : posts;
+
+  const postItems = searchedPosts.map(post => <PostItem key={post.id} post={post} />);
+
+  return (
+    <Container>
+      <SearchContainer>
+        <SearchInput placeholder='검색어를 입력하세요.' value={searchKeyword} onChange={({ target }) => setSearchKeyword(target.value)}/>
+      </SearchContainer>
+      {postItems.length > 0 ? (
+          <PostContainer>
+            {postItems}
+          </PostContainer> 
+        ) : <EmptyPost searchKeyword={searchKeyword}/>}
+    </Container>
+  );
 };
 
 export default PostList;
