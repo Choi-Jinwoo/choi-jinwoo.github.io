@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://choi-jinwoo.github.io/sitemap/sitemap-index.xml
+Sitemap: https://choi-jinwoo.github.io/sitemap.xml
 Host: https://choi-jinwoo.github.io
