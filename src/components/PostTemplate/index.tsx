@@ -86,8 +86,10 @@ const PostPage = ({ data }: Props) => {
     <Tag key={index} size="medium" tag={tag} />
   ));
 
-  const composePostImagePath = () => {
+  const composePostImagePath = (): string | undefined => {
     let imageSrc = '';
+
+    if (thumbnail === undefined) return undefined;
 
     if (Array.isArray(thumbnail.childImageSharp.fluid)) {
       imageSrc = thumbnail.childImageSharp.fluid[0].src;
