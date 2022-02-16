@@ -76,6 +76,9 @@ const PostInfoWrapper = styled.div`
   padding: 16px 0px;
 `;
 
+const PostWithoutThumbnailWrapper = styled(PostInfoWrapper)`
+`;
+
 const Tags = styled.div`
   width: 100%;
 
@@ -84,7 +87,9 @@ const Tags = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.h2<{
+  margin?: string;
+}>`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -92,17 +97,19 @@ const Title = styled.h2`
   text-overflow: ellipsis;
   font-size: ${props => props.theme.sizes.medium};
   font-weight: bold;
-  margin: 16px 0px 8px 0px;
+  margin: ${props => props.margin ?? '0'};
 `;
 
-const Description = styled.p`
+const Description = styled.p<{
+  margin?: string;
+}>`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
   color: ${props => props.theme.colors.gray3};
   text-overflow: ellipsis;
-  margin-bottom: 8px;
+  margin: ${props => props.margin ?? '0'};
   font-size: ${props => props.theme.sizes.small};
 `;
 
@@ -128,21 +135,30 @@ const PostItem = ({ post }: Props) => {
   ));
 
   return (
-    <Container>
-      <Link to={`/post/${post.slug}`}>
+    <Link to={`/post/${post.slug}`}>
+      <Container>
         <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
-        <ThumbnailWrapper>
-          <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
-        </ThumbnailWrapper>
-
-        <PostInfoWrapper>
-          <Tags>{tagItems}</Tags>
-          <Title>{post.frontmatter.title}</Title>
-          <Description>{post.frontmatter.description}</Description>
-          <Date>{post.frontmatter.date}</Date>
-        </PostInfoWrapper>
-      </Link>
-    </Container>
+        {post.frontmatter.thumbnail ?
+          <>
+            <ThumbnailWrapper>
+              <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
+            </ThumbnailWrapper>
+            <PostInfoWrapper>
+              <Tags>{tagItems}</Tags>
+              <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
+              <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              <Date>{post.frontmatter.date}</Date>
+            </PostInfoWrapper>
+          </>
+          : <PostWithoutThumbnailWrapper>
+              <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
+              <Tags>{tagItems}</Tags>
+              <Description margin='16px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              <Date>{post.frontmatter.date}</Date>
+            </PostWithoutThumbnailWrapper>
+        }
+      </Container>
+    </Link>
   );
 };
 
