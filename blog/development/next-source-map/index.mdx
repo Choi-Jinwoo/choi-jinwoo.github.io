@@ -1,0 +1,43 @@
+---
+title: 'Next.js에서 SourceMap 사용하기'
+description: 'Next.js에서 SourceMap을 통해 디버깅하기'
+date: '2022-02-16 20:00'
+tags: ['Next']
+thumbnail: './thumbnail.png'
+---
+
+오늘 [Next.js](https://nextjs.org/)에서 작업을 하던 중 **디버깅**이 필요했다. 하지만 `Next.js` 환경에서 디버깅해본 경험이 없었고 찾아 글로 정리하려고 한다.
+
+> 자바스크립트에선 디버깅툴 보다 `console.log`를 통해 확인하는 경우가 많은데 디버깅툴은 중단점을 걸고 값의 변화를 더 쉽게 확인할 수 있는 등 `console.log`보다 장점이 많다.
+
+### SourceMap이란?
+
+[Source Map](https://joshua1988.github.io/webpack-guide/devtools/source-map.html#%EC%86%8C%EC%8A%A4-%EB%A7%B5)은 웹팩에서 빌드한 파일과 원본 파일을 연결시켜주는 기능이다.
+
+해당 기능을 통해 빌드된 파일임에도 디버깅을 할 수 있다.
+
+단, SourceMap을 포함하면 빌드가 오래걸리며 난독화되지 않은 코드를 볼 수 있어 실제 `production`엔 SourceMap이 있어선 **안된다**.
+
+### Next.js의 SoruceMap
+
+`Next.js`는 `yarn dev`를 통해 development 서버를 실행할 경우 자동으로 SourceMap을 설정해준다.
+
+만약 부득이하게 production 환경에서 SourceMap이 필요하다면 [productionBrowserSourceMaps](https://nextjs.org/docs/advanced-features/source-maps)옵션을 통해 활성화할 수 있다.
+
+물론, Next.js에서 권장하는 방법은 아니다.
+
+SouceMap은 `Chrome 개발 도구(⌘ + ⌥ + i) > Sources > _N_E(폴더)`에서 파일을 확인할 수 있다.
+
+### Server Side 디버깅
+
+빌드 시 SourceMap을 만드는 방법은 방법은 클라이언트 사이드만 디버깅할 수 있다.
+
+서버 사이드를 디버깅하기 위해선 `Node.js` 디버깅을 활용해야한다.
+
+[Next.js 공식문서](https://nextjs.org/docs/advanced-features/debugging)에 따르면 `--inspect` 옵션을 추가한 뒤 `chrome://inspect`에서 확인할 수 있다.
+
+자세한 방법은 공식문서에 정리되어 있다.
+
+---
+
+`Next.js`를 설정하며 `Next.js`에서 DX(Developer Experience)에 많은 신경을 쓴는 것 같다고 생각했다.
