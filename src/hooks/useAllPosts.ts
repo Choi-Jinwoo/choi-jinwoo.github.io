@@ -9,7 +9,7 @@ export type Post = {
     title: string;
     description: string;
     tags: string[];
-    thumbnail: {
+    thumbnail?: {
       childImageSharp: GatsbyImageFluidProps;
     };
   };
