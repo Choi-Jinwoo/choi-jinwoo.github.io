@@ -89,7 +89,7 @@ const PostPage = ({ data }: Props) => {
   const composePostImagePath = (): string | undefined => {
     let imageSrc = '';
 
-    if (thumbnail === undefined) return undefined;
+    if (!thumbnail) return undefined;
 
     if (Array.isArray(thumbnail.childImageSharp.fluid)) {
       imageSrc = thumbnail.childImageSharp.fluid[0].src;
@@ -117,7 +117,9 @@ const PostPage = ({ data }: Props) => {
           </TagsDateWrapper>
         </PostTitleSection>
 
-        <Thumbnail fluid={thumbnail.childImageSharp.fluid} />
+        {
+          thumbnail && <Thumbnail fluid={thumbnail.childImageSharp.fluid} />
+        }
         <PostContentSection>
           <MDXProvider
             components={{
