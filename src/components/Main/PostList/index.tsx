@@ -18,6 +18,7 @@ const postFadeIn = keyframes`
 `;
 
 const Container = styled.section`
+  margin-bottom: 80px
 `;
 
 const SearchContainer = styled.section`
