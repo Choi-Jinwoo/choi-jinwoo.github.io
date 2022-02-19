@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
@@ -131,11 +131,17 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
+  const [isCopied, setIsCopied] = useState(false);
   const { siteUrl } = useSiteMetaData();
 
   const handleCopyURLClick: MouseEventHandler = e => {
     e.preventDefault();
     navigator.clipboard.writeText(`${siteUrl}/post/${post.slug}`);
+
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   const tagItems = post.frontmatter.tags.map((tag, index) => (
@@ -145,7 +151,7 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to={`/post/${post.slug}`}>
       <Container>
-        <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
+        <CopyButton onClick={handleCopyURLClick}>{isCopied ? 'Copied' : 'Copy URL'}</CopyButton>
         {post.frontmatter.thumbnail ?
           <>
             <ThumbnailWrapper>
