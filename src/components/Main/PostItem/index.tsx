@@ -41,16 +41,16 @@ const CopyButton = styled.button.attrs({ className: 'post-item-copy-button' })`
   z-index: 2;
   top: 12px;
   right: 12px;
-  padding: 8px 12px;
+  padding: 4px 8px;
   border: none;
-  background-color: ${props => props.theme.colors.gray1};
-  color: ${props => props.theme.colors.gray6};
+  background-color: ${props => props.theme.colors.gray7}cc;
+  color: ${props => props.theme.colors.white};
   font-size: ${props => props.theme.sizes.small};
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.gray6}cc;
   }
 `;
 
