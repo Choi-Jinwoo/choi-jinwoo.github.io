@@ -10,6 +10,8 @@ const Container = styled.article`
   position: relative;
   width: 360px;
   height: 400px;
+  display: flex;
+  flex-direction: column;
 
   @media ${props => props.theme.device.mobile} {
     width: 100%;
@@ -73,10 +75,16 @@ const Thumbnail = styled(Image).attrs({
 `;
 
 const PostInfoWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 16px 0px;
+  box-sizing: border-box;
+  height: fit-content;
 `;
 
-const PostWithoutThumbnailWrapper = styled(PostInfoWrapper)`
+const PostContentWrapper = styled.div`
+  flex: 1;
 `;
 
 const Tags = styled.div`
@@ -144,18 +152,22 @@ const PostItem = ({ post }: Props) => {
               <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
             </ThumbnailWrapper>
             <PostInfoWrapper>
-              <Tags>{tagItems}</Tags>
-              <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
-              <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              <PostContentWrapper>
+                <Tags>{tagItems}</Tags>
+                <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
+                <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              </PostContentWrapper>
               <Date>{post.frontmatter.date}</Date>
             </PostInfoWrapper>
           </>
-          : <PostWithoutThumbnailWrapper>
-              <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
-              <Tags>{tagItems}</Tags>
-              <Description margin='16px 0px 8px 0px'>{post.frontmatter.description}</Description>
+          : <PostInfoWrapper>
+              <PostContentWrapper>
+                <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
+                <Description margin='8px 0px 16px 0px'>{post.frontmatter.description}</Description>
+                <Tags>{tagItems}</Tags>
+              </PostContentWrapper>
               <Date>{post.frontmatter.date}</Date>
-            </PostWithoutThumbnailWrapper>
+            </PostInfoWrapper>
         }
       </Container>
     </Link>
