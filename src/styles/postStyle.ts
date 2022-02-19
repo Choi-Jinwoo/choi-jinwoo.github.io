@@ -87,27 +87,20 @@ const PostStyle = css`
 
   ol,
   ul {
-    list-style: none;
     margin: 16px 0px;
 
     li {
-      width: calc(100% - 28px);
       margin: 8px 0px;
-      left: 28px;
-      position: relative;
+      padding: 0px 16px;
+      list-style: inside;
 
-      &:before {
-        position: absolute;
-        content: '•';
-        font-size: 1.75rem;
+      &::marker {
         color: ${props => props.theme.colors.gray2};
-        left: -36px;
-        top: -6px;
       }
     }
 
     ul {
-      padding-left: 32px;
+      padding-left: 16px;
       margin: 4px 0px;
     }
   }
