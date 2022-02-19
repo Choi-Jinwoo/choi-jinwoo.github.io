@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
@@ -41,16 +41,16 @@ const CopyButton = styled.button.attrs({ className: 'post-item-copy-button' })`
   z-index: 2;
   top: 12px;
   right: 12px;
-  padding: 8px 12px;
+  padding: 4px 8px;
   border: none;
-  background-color: ${props => props.theme.colors.gray1};
-  color: ${props => props.theme.colors.gray6};
+  background-color: ${props => props.theme.colors.gray7}cc;
+  color: ${props => props.theme.colors.white};
   font-size: ${props => props.theme.sizes.small};
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.gray6}cc;
   }
 `;
 
@@ -131,11 +131,17 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
+  const [isCopied, setIsCopied] = useState(false);
   const { siteUrl } = useSiteMetaData();
 
   const handleCopyURLClick: MouseEventHandler = e => {
     e.preventDefault();
     navigator.clipboard.writeText(`${siteUrl}/post/${post.slug}`);
+
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   const tagItems = post.frontmatter.tags.map((tag, index) => (
@@ -145,7 +151,7 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to={`/post/${post.slug}`}>
       <Container>
-        <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
+        <CopyButton onClick={handleCopyURLClick}>{isCopied ? 'Copied' : 'Copy URL'}</CopyButton>
         {post.frontmatter.thumbnail ?
           <>
             <ThumbnailWrapper>
