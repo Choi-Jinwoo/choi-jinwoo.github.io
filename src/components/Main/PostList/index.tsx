@@ -18,6 +18,7 @@ const postFadeIn = keyframes`
 `;
 
 const Container = styled.section`
+  margin-bottom: 80px
 `;
 
 const SearchContainer = styled.section`
@@ -45,7 +46,7 @@ const SearchInput = styled.input`
 
 const PostContainer = styled.section`
   display: grid;
-  row-gap: 20px;
+  row-gap: 48px;
   animation: ${postFadeIn} 1s;
 
   grid-template-columns: repeat(3, 1fr);

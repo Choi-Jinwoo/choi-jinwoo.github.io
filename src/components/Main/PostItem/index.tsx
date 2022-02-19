@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, useState } from 'react';
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
@@ -10,6 +10,8 @@ const Container = styled.article`
   position: relative;
   width: 360px;
   height: 400px;
+  display: flex;
+  flex-direction: column;
 
   @media ${props => props.theme.device.mobile} {
     width: 100%;
@@ -39,16 +41,16 @@ const CopyButton = styled.button.attrs({ className: 'post-item-copy-button' })`
   z-index: 2;
   top: 12px;
   right: 12px;
-  padding: 8px 12px;
+  padding: 4px 8px;
   border: none;
-  background-color: ${props => props.theme.colors.gray1};
-  color: ${props => props.theme.colors.gray6};
+  background-color: ${props => props.theme.colors.gray7}cc;
+  color: ${props => props.theme.colors.white};
   font-size: ${props => props.theme.sizes.small};
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: ${props => props.theme.colors.gray2};
+    background-color: ${props => props.theme.colors.gray6}cc;
   }
 `;
 
@@ -73,10 +75,16 @@ const Thumbnail = styled(Image).attrs({
 `;
 
 const PostInfoWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 16px 0px;
+  box-sizing: border-box;
+  height: fit-content;
 `;
 
-const PostWithoutThumbnailWrapper = styled(PostInfoWrapper)`
+const PostContentWrapper = styled.div`
+  flex: 1;
 `;
 
 const Tags = styled.div`
@@ -123,11 +131,17 @@ type Props = {
 };
 
 const PostItem = ({ post }: Props) => {
+  const [isCopied, setIsCopied] = useState(false);
   const { siteUrl } = useSiteMetaData();
 
   const handleCopyURLClick: MouseEventHandler = e => {
     e.preventDefault();
     navigator.clipboard.writeText(`${siteUrl}/post/${post.slug}`);
+
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 3000);
   };
 
   const tagItems = post.frontmatter.tags.map((tag, index) => (
@@ -137,25 +151,29 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to={`/post/${post.slug}`}>
       <Container>
-        <CopyButton onClick={handleCopyURLClick}>Copy URL</CopyButton>
+        <CopyButton onClick={handleCopyURLClick}>{isCopied ? 'Copied' : 'Copy URL'}</CopyButton>
         {post.frontmatter.thumbnail ?
           <>
             <ThumbnailWrapper>
               <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
             </ThumbnailWrapper>
             <PostInfoWrapper>
-              <Tags>{tagItems}</Tags>
-              <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
-              <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              <PostContentWrapper>
+                <Tags>{tagItems}</Tags>
+                <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
+                <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+              </PostContentWrapper>
               <Date>{post.frontmatter.date}</Date>
             </PostInfoWrapper>
           </>
-          : <PostWithoutThumbnailWrapper>
-              <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
-              <Tags>{tagItems}</Tags>
-              <Description margin='16px 0px 8px 0px'>{post.frontmatter.description}</Description>
+          : <PostInfoWrapper>
+              <PostContentWrapper>
+                <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
+                <Description margin='8px 0px 16px 0px'>{post.frontmatter.description}</Description>
+                <Tags>{tagItems}</Tags>
+              </PostContentWrapper>
               <Date>{post.frontmatter.date}</Date>
-            </PostWithoutThumbnailWrapper>
+            </PostInfoWrapper>
         }
       </Container>
     </Link>
