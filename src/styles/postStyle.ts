@@ -60,7 +60,7 @@ const PostStyle = css`
 
   code,
   pre * {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-family: 'IBM Plex Mono', monospace;
   }
 
