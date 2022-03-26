@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
@@ -18,7 +18,7 @@ const postFadeIn = keyframes`
 `;
 
 const Container = styled.section`
-  margin-bottom: 80px
+  margin-bottom: 80px;
 `;
 
 const SearchContainer = styled.section`
@@ -66,8 +66,8 @@ const isMatchPost = (post: Post, keyword: string) => {
   const { title, tags } = post.frontmatter;
   if (title.toLowerCase().includes(keyword.toLowerCase())) return true;
 
-  return tags.some((tag) => tag.toLowerCase().includes(keyword.toLowerCase()));
-}
+  return tags.some(tag => tag.toLowerCase().includes(keyword.toLowerCase()));
+};
 
 const SEARCH_KEYWORD_QUERY_KEY = 'q';
 
@@ -76,7 +76,10 @@ const PostList = () => {
   const posts = useAllPosts();
 
   useEffect(() => {
-    const searchKeywordInQuerystring = parseQuerystring(location.search, SEARCH_KEYWORD_QUERY_KEY);
+    const searchKeywordInQuerystring = parseQuerystring(
+      location.search,
+      SEARCH_KEYWORD_QUERY_KEY
+    );
     if (searchKeywordInQuerystring === null) return;
 
     setSearchKeyword(searchKeywordInQuerystring);
@@ -84,23 +87,40 @@ const PostList = () => {
 
   useEffect(() => {
     // Sync querystring and searchKeyword state
-    history.pushState({}, null, `?${SEARCH_KEYWORD_QUERY_KEY}=${searchKeyword}`);
-  }, [searchKeyword])
+    if (searchKeyword === '') {
+      history.pushState({}, null, '/');
+    } else {
+      history.pushState(
+        {},
+        null,
+        `?${SEARCH_KEYWORD_QUERY_KEY}=${searchKeyword}`
+      );
+    }
+  }, [searchKeyword]);
 
-  const searchedPosts = searchKeyword !== '' ? posts.filter((post) => isMatchPost(post, searchKeyword)) : posts;
+  const searchedPosts =
+    searchKeyword !== ''
+      ? posts.filter(post => isMatchPost(post, searchKeyword))
+      : posts;
 
-  const postItems = searchedPosts.map(post => <PostItem key={post.id} post={post} />);
+  const postItems = searchedPosts.map(post => (
+    <PostItem key={post.id} post={post} />
+  ));
 
   return (
     <Container>
       <SearchContainer>
-        <SearchInput placeholder='검색어를 입력하세요.' value={searchKeyword} onChange={({ target }) => setSearchKeyword(target.value)}/>
+        <SearchInput
+          placeholder="검색어를 입력하세요."
+          value={searchKeyword}
+          onChange={({ target }) => setSearchKeyword(target.value)}
+        />
       </SearchContainer>
       {postItems.length > 0 ? (
-          <PostContainer>
-            {postItems}
-          </PostContainer> 
-        ) : <EmptyPost searchKeyword={searchKeyword}/>}
+        <PostContainer>{postItems}</PostContainer>
+      ) : (
+        <EmptyPost searchKeyword={searchKeyword} />
+      )}
     </Container>
   );
 };
