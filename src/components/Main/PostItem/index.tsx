@@ -14,7 +14,6 @@ const Container = styled.article`
   flex-direction: column;
 
   @media ${props => props.theme.device.mobile} {
-    width: 100%;
     height: auto;
   }
 
@@ -151,30 +150,41 @@ const PostItem = ({ post }: Props) => {
   return (
     <Link to={`/post/${post.slug}`}>
       <Container>
-        <CopyButton onClick={handleCopyURLClick}>{isCopied ? 'Copied' : 'Copy URL'}</CopyButton>
-        {post.frontmatter.thumbnail ?
+        <CopyButton onClick={handleCopyURLClick}>
+          {isCopied ? 'Copied' : 'Copy URL'}
+        </CopyButton>
+        {post.frontmatter.thumbnail ? (
           <>
             <ThumbnailWrapper>
-              <Thumbnail fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
+              <Thumbnail
+                fluid={post.frontmatter.thumbnail.childImageSharp.fluid}
+              />
             </ThumbnailWrapper>
             <PostInfoWrapper>
               <PostContentWrapper>
                 <Tags>{tagItems}</Tags>
-                <Title margin='16px 0px 8px 0px'>{post.frontmatter.title}</Title>
-                <Description margin='0px 0px 8px 0px'>{post.frontmatter.description}</Description>
+                <Title margin="16px 0px 8px 0px">
+                  {post.frontmatter.title}
+                </Title>
+                <Description margin="0px 0px 8px 0px">
+                  {post.frontmatter.description}
+                </Description>
               </PostContentWrapper>
               <Date>{post.frontmatter.date}</Date>
             </PostInfoWrapper>
           </>
-          : <PostInfoWrapper>
-              <PostContentWrapper>
-                <Title margin='0px 0px 8px 0px'>{post.frontmatter.title}</Title>
-                <Description margin='8px 0px 16px 0px'>{post.frontmatter.description}</Description>
-                <Tags>{tagItems}</Tags>
-              </PostContentWrapper>
-              <Date>{post.frontmatter.date}</Date>
-            </PostInfoWrapper>
-        }
+        ) : (
+          <PostInfoWrapper>
+            <PostContentWrapper>
+              <Title margin="0px 0px 8px 0px">{post.frontmatter.title}</Title>
+              <Description margin="8px 0px 16px 0px">
+                {post.frontmatter.description}
+              </Description>
+              <Tags>{tagItems}</Tags>
+            </PostContentWrapper>
+            <Date>{post.frontmatter.date}</Date>
+          </PostInfoWrapper>
+        )}
       </Container>
     </Link>
   );
