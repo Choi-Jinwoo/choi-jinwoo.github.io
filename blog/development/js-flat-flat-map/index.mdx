@@ -1,0 +1,78 @@
+---
+title: Javascript flat(), flatMap() 함수
+description: Javascript의 flat(), flatMap() 함수 기본적인 사용법
+date: 2022-03-29
+tags: ['Javascript']
+thumbnail:
+---
+
+평소 javascript로 개발을 하다 보면 `[[1, 2, 3], [4, 5, 6], [7 ,8, 9]]`와 같은 상황을 종종 마주친다.
+
+이런 배열을 `[1, 2, 3, 4, 5, 6, 7, 8, 9]`와 같이 만들고 싶다면 `Array.prototype.flat()` 함수를 사용할 수 있다.
+
+#### flat()
+
+```javascript
+const arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+간단해 보이지만 만약 배열의 깊이가 더 깊어진다면 어떻게 될까?
+
+```javascript
+const arr = [[[1], [2], [3]]];
+
+console.log(arr.flat()); // [[1], [2], [3]]
+```
+
+가장 바깥 한단계만 배열이 평탄화됐다.
+
+이런 경우를 해결하기 위해선 `depth` 매개변수를 넘겨줘 해결할 수 있다.
+
+```javascript
+const arr = [[[1], [2], [3]]];
+
+console.log(arr.flat(2)); // [1, 2, 3]
+```
+
+기본은 `1`인데 `2`를 넣어주면 두단계 깊이까지 평탄화가 된다.
+
+만약 깊이를 알지 못할땐 어떻게 해결할 수 있을까?
+
+```javascript
+const arr = [[[1], [2], [3]]];
+
+console.log(arr.flat(Infinity)); // [1, 2, 3]
+```
+
+javascript의 `Infinity`를 사용하면 깊이와 무관히 평탄화 시킬 수 있다.
+
+#### flatMap()
+
+`flatMap`은 `map`과 `flat`의 조합이다.
+
+```javascript
+const arr = [1, 2, 3, 4];
+
+console.log(arr.flatMap(current => [current, current * 10])); // [1, 10, 2, 20, 3, 30, 4, 40]
+```
+
+`flatMap`은 `map`의 반환값 `[current, current * 10]`을 `flat`을 통해 평탄화한다.
+
+```javascript
+const arr = [1, 2, 3, 4];
+
+console.log(arr.map(current => [current, current * 10]).flat()); // [1, 10, 2, 20, 3, 30, 4, 40]
+```
+
+위 코드와 `flatMap`을 사용한 예제는 같은 결과를 나타낸다.
+
+---
+
+[Array.prototype.flatMap() MDN 문서](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap)  
+[Array.prototype.flat() MDN 문서](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/flat)
