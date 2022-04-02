@@ -1,0 +1,111 @@
+---
+title: Git 삭제된 커밋, 브랜치 복구
+description: 삭제된 commit 혹은 branch를 복구하는 방법
+date: 2022-04-02
+tags: ['Git']
+thumbnail: thumbnail.png
+---
+
+회사에서 작업 후 브랜치의 이름을 바꾸려고 `git branch -m feature/A feature/B` 명령어를 입력하려고 했다.
+
+근데 실수로 `git branch -D feature/A feature/B`로 옵션을 잘못넣어줬고 작업한 브랜치 `feature/A`가 전부 날라갔다.
+
+이때 **삭제한 branch를 복구**해서 해결할 수 있었는데 그 방법을 정리하려고 한다.
+
+### git reflog
+
+각각 작업을 완료한 후 `first`, `second` 라는 commit을 남겼다.
+
+```
+* a8f076a (HEAD -> main) second
+* 8c31690 first
+```
+
+`git log`는 이렇게 생겼다.
+
+여기서 다시 `second` commit을 취소하기 위해서 `reset` 명령을 사용했다.
+
+```shell
+$ git reset --hard HEAD^
+$ git log
+
+# log 결과
+* 8c31690 (HEAD -> main) first
+```
+
+그렇다면 이렇게 `second` commit은 취소되고 로그에서도 `second` commit을 확인할 수 없다
+
+이런 상황에서 기존의 `second` commit 로그까지 확인할 수 있는 명령어가 `git reflog`이다.
+
+```shell
+$ git reflog
+
+# reflog 결과
+* 8c31690 (HEAD -> main) HEAD@{0}: reset: moving to HEAD^
+* a8f076a HEAD@{1}: commit: second
+* 8c31690 (HEAD -> main) HEAD@{2}: commit (initial): first
+```
+
+로그결과에서 `second` commit도 확인할 수 있다.
+
+### Commit 복구
+
+`git reset`이 된 상황에서 `second` commit으로 다시 복구하고 싶다면 `second` commit으로 다시 `reset` 해주면 된다.
+
+```shell
+$ git reset --hard a8f076a
+$ git log
+
+# log 결과
+* a8f076a (HEAD -> main) second
+* 8c31690 first
+```
+
+명령어를 수행한 후 다시 로그를 확인해보면 `second` commit이 생긴걸 확인할 수 있다.
+
+### Branch 복구
+
+`main` branch에서 `first/second` commit을 한 후 `develop` branch에서 `third(develop)` commit을 한 상황이다.
+
+```shell
+$ (develop) git log
+
+# log 결과
+* abb53d7 (HEAD -> develop) third(develop)
+* 88b17f5 (main) second
+* d42c721 first
+```
+
+여기서 `develop` branch를 삭제했다.
+
+```shell
+$ git checkout main
+$ git branch -D develop
+```
+
+이후 다시 `develop` branch를 복구하고 싶다면 마찬가지로 `reflog`를 통해 삭제한 branch의 commit 해시를 확인해 복구한다.
+
+```shell
+$ git reflog
+
+# reflog 결과
+* 88b17f5 (HEAD -> main) HEAD@{2}: checkout: moving from develop to main
+* abb53d7 HEAD@{3}: commit: third(develop)
+* 88b17f5 (HEAD -> main) HEAD@{4}: checkout: moving from main to develop
+* 88b17f5 (HEAD -> main) HEAD@{5}: commit: second
+* d42c721 HEAD@{6}: commit (initial): first
+```
+
+여기서 `develop` branch의 가장 최근 commit인 `third(develop)`의 해시로 복구한다.
+
+```shell
+$ git checkout -b develop abb53d7
+$ (develop) git log
+
+# log 결과
+* abb53d7 (HEAD -> develop) third(develop)
+* 88b17f5 (main) second
+* d42c721 first
+```
+
+이렇게 `develop` branch와 commit들이 복구된걸 확인할 수 있다.
