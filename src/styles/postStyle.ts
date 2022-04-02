@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 const PostStyle = css`
-  font-size: 1.125rem;
+  font-size: 1rem;
 
   h1,
   h2,
