@@ -24,8 +24,15 @@ const Container = styled.section`
 const SearchContainer = styled.section`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 40px;
+  width: 100%;
+`;
+
+const NumberOfPosts = styled.span`
+  font-size: ${props => props.theme.sizes.small};
+  color: ${props => props.theme.colors.gray5};
+  font-weight: bold;
 `;
 
 const SearchInput = styled.input`
@@ -69,6 +76,10 @@ const isMatchPost = (post: Post, keyword: string) => {
   return tags.some(tag => tag.toLowerCase().includes(keyword.toLowerCase()));
 };
 
+const composeNumberOfPostsText = (prefix: string, numberOfPosts) => {
+  return `${prefix} (${numberOfPosts})`;
+};
+
 const SEARCH_KEYWORD_QUERY_KEY = 'q';
 
 const PostList = () => {
@@ -110,6 +121,12 @@ const PostList = () => {
   return (
     <Container>
       <SearchContainer>
+        <NumberOfPosts>
+          {composeNumberOfPostsText(
+            searchKeyword === '' ? '전체 글' : `'${searchKeyword}' 검색 결과`,
+            searchedPosts.length
+          )}
+        </NumberOfPosts>
         <SearchInput
           placeholder="검색어를 입력하세요."
           value={searchKeyword}
