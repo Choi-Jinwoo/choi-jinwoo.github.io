@@ -12,32 +12,32 @@ const PostStyle = css`
   }
 
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.625rem;
     margin: 3.5rem 0px 10px 0px;
   }
 
   h2 {
-    font-size: 2.25rem;
+    font-size: 1.5rem;
     margin: 3rem 0px 8px 0px;
   }
 
   h3 {
-    font-size: 2rem;
+    font-size: 1.375rem;
     margin: 2.5rem 0px 6px 0px;
   }
 
   h4 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     margin: 2rem 0px;
   }
 
   h5 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     margin: 1.5rem 0px 2px 0px;
   }
 
   p {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.75rem;
     margin: 24px 0px;
   }
