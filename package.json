@@ -26,17 +26,19 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "ts-node": "^10.7.0"
   },
   "devDependencies": {
-    "prettier": "2.4.1"
+    "prettier": "2.4.1",
+    "typescript": "^4.6.3"
   },
   "keywords": [
     "gatsby"
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build && cp rss.xml public/feed.xml",
+    "build": "gatsby build && ts-node ./src/gen-rss.ts",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
