@@ -1,0 +1,173 @@
+---
+title: 손에 잡히는 정규표현식을 읽으며, 정리 (2)
+description: 정규표현식 문자 찾기, 문자 집합, 문자/집합 제외 찾기
+date: 2022-04-03
+tags: ['RegExp']
+thumbnail:
+---
+
+### 정규표현식 정리 시리즈
+
+- [정규표현식 정리 (1)](http://choi-jinwoo.github.io/post/development/regex-in-10m-1)
+- [정규표현식 정리 (2)](http://choi-jinwoo.github.io/post/development/regex-in-10m-2)
+- [정규표현식 정리 (3)]()
+
+### 메타 문자
+
+정규표현식에는 메타 문자가 존재한다. 대표적인 메타 문자는 `.`이다.
+
+```javascript
+'hi.'.match(/hi./g); // ['hi.']
+```
+
+`.`은 위와 같이 문자 `.`에 대응될 수 있지만 그외의 문자들과도 대응된다.
+
+```javascript
+'hi1'.match(/hi./g); // ['hi1']
+```
+
+##### 이스케이프
+
+그렇다면 진짜 `hi.`에 해당하는 패턴을 찾고 싶을땐 어떻게 해야할까?
+
+이럴땐 이스케이프자 `\(역슬래쉬)`를 사용하면 된다.
+
+```javascript
+'hi.'.match(/hi\./g); // ['hi.']
+'hi1'.match(/hi\./g); // null
+```
+
+이렇게 `\.`은 문자 `.`을 특정하도록 할 수 있다.
+
+##### 공백
+
+줄바꿈이나 탭과 같은 공백 또한 메타문자가 정의되어있다.
+
+```javascript
+`
+  first
+  second
+  third
+`.match(/\n/g); // ['\n', '\n', '\n']
+```
+
+`\n`은 줄바꿈을 나타내며 `\t`는 탭을 나타낸다.
+
+모든 공백문자의 집합은 `\s`로 나타낸다. `[ \f\n\r\t\v]`와 같다.
+
+반대로 공백문자가 아닌 문자는 `\S`로 나타낸다. `[^ \f\n\r\t\v]`이다.
+
+##### 숫자
+
+`[0-9]`는 숫자 하나를 의미한다. 이걸 더 쉽게 표현할 수 있는데 `\d`로 표현할 수 있다.
+
+```javascript
+'h1 j2 ka'.match(/[hjk]\d/g); // ['h1', 'j2']
+```
+
+반대로 숫자가 아닌 문자 하나 `[^0-9]`는 `\D`로 표한한다.
+
+```javascript
+'h1 j2 ka'.match(/[hjk]\D/g); // ['ka']
+```
+
+##### 알파벳 + 숫자 + \_
+
+`[a-zA-Z0-9_]`를 의미하는 메타문자는 `\w`이다.
+
+```javascript
+'h1 j2 ka h_ jA k*'.match(/[hjk]\w/g); // ['h1', 'j2', 'ka', 'h_', 'jA']
+```
+
+반대의 경우인 `^[a-zA-Z0-9_]`도 `\W`로 표현한다.
+
+```javascript
+'h1 j2 ka h_ jA k*'.match(/[hjk]\W/g); // ['k*']
+```
+
+### 문자의 반복
+
+간단히 `http://{name}.com`이라는 패턴을 찾고 싶다면 어떻게 해야할까?
+
+```javascript
+'http://a.com'.match(/http:\/\/\w\.com/g); // ['http://a.com']
+```
+
+`http://a.com`의 경우 잘 찾아진다.
+
+```javascript
+'http://abc.com'.match(/http:\/\/\w\.com/g); // null
+```
+
+다만 `http://abc.com`은 찾지 못하는데 `\w`는 하나의 문자에 대응되며 `http://{name}.com`에서 `{name}`의 길이는 모르기 때문이다.
+
+이럴땐 `+` 메타문자를 사용할 수 있다.
+
+```javascript
+'http://a.com'.match(/http:\/\/\w+\.com/g); // ['http://a.com']
+'http://abc.com'.match(/http:\/\/\w+\.com/g); // ['http://abc.com']
+```
+
+`+` 메타문자는 앞에 나온 집합 혹은 문자의 한번 이상 반복을 의미한다.
+
+##### 반복되는 문자가 없을 수도 있다면?
+
+만약, `http://.com`과 같은 경우도 찾고 싶다면 어떻게 해야할까?
+
+`+` 앞에 나온 집합 혹은 문자가 없을 수 있는 경우는 `*`로 대체할 수 있다.
+
+`*`은 앞의 집합 혹은 문자가 없겨나 한번 이상 연속하는 경우에 대응된다.
+
+```javascript
+'http://.com'.match(/http:\/\/\w*\.com/g); // ['http://.com']
+'http://a.com'.match(/http:\/\/\w*\.com/g); // ['http://a.com']
+'http://abc.com'.match(/http:\/\/\w*\.com/g); // ['http://abc.com']
+```
+
+##### 문자 하나가 없을 수 있다면?
+
+`http://{name}.com`에서 `http와 https 모두` 찾고 싶다면 어떻게 해야할까?
+
+```javascript
+'http://abc.com'.match(/https?:\/\/\w*\.com/g); // ['http://abc.com']
+'https://abc.com'.match(/https?:\/\/\w*\.com/g); // ['https://abc.com']
+```
+
+`?` 메타문자를 사용할 수 있다. `*`과 비슷하지만 `?`는 한문자에 대응되며 한 문자가 없거나 한번 존재하는 경우에 사용할 수 있다.
+
+##### 구간 설정
+
+`*`이나 `+`는 패턴이 반복되는 횟수와는 무관히 모두 찾을 수 있다. 하지만 특정 횟수에 대응되도록 가져오고 싶다면 `{}`를 사용할 수 있다.
+
+```javascript
+'hello world'.match(/l\w\w/g); // ['llo']
+'hello world'.match(/l\w{2}/g); // ['llo']
+```
+
+`l 뒤에 \w가 두번 대응`될때 쉽게 생각하면 1번처럼 `\w\w`를 사용할 수 있지만 `\w{2}`로도 사용할 수 있다.
+
+`{1,2}`와 같이 `1 ~ 2번`으로 정의할 수 있다.
+
+```javascript
+'hello world'.match(/l\w{1,2}/g); // ['llo', 'ld']
+```
+
+또한 최솟값만 존재하도록 할 수 있다.
+
+```javascript
+'hello world'.match(/l\w{2,}/g); // ['llo']
+```
+
+##### 탐욕적, 게으른 수량자
+
+```javascript
+'hello world & hello regex world'.match(/hello.*world/g); // ['hello world & hello regex world']
+```
+
+`['hello world', 'hello regex world']` 를 예상했는데 다른 결과가 나왔다.
+
+이건 `+`, `*`과 같은 메타문자는 가장 큰 덩어리를 찾으려고 하는데 이걸 `*?`, `+?`를 통해 해결할 수 있다.
+
+```javascript
+'hello world & hello regex world'.match(/hello.*?world/g); // ['hello world', 'hello regex world']
+```
