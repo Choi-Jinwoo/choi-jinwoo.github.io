@@ -9,7 +9,7 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Sun, 03 Apr 2022 08:56:29 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 03 Apr 2022 08:58:20 GMT</lastBuildDate>
         
       <item>
         <title>
@@ -19,7 +19,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2021-retrospection</guid>
         <pubDate>Thu, 10 Feb 2022 18:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Git 특정 브랜치 제외 전체 삭제 ]]>
@@ -28,7 +28,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/delete-all-git-branch</guid>
         <pubDate>Sun, 27 Mar 2022 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Git 삭제된 커밋, 브랜치 복구 ]]>
@@ -37,7 +37,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</guid>
         <pubDate>Sat, 02 Apr 2022 13:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ macOS 터미널 설정 ]]>
@@ -46,7 +46,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/mac-terminal-settings</guid>
         <pubDate>Tue, 16 Nov 2021 15:30:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 블로그를 만들어보았다 ]]>
@@ -55,7 +55,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/new-blog-intro</guid>
         <pubDate>Thu, 14 Oct 2021 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ VSCode에서 Snippets 사용하기 ]]>
@@ -64,7 +64,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/vscode-snippet</guid>
         <pubDate>Sat, 26 Mar 2022 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Utterances로 블로그 댓글 만들기 ]]>
@@ -73,7 +73,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/apply-utterances-in-blog</guid>
         <pubDate>Sat, 16 Oct 2021 20:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 빅오 표기법 ]]>
@@ -82,7 +82,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/big-o-notation</guid>
         <pubDate>Mon, 01 Nov 2021 12:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ CSR과 SSR ]]>
@@ -91,7 +91,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/csr-and-ssr</guid>
         <pubDate>Fri, 15 Oct 2021 15:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 자료구조 정리 ]]>
@@ -100,7 +100,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/data-structure-summary</guid>
         <pubDate>Mon, 08 Nov 2021 17:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Gatsby에 Syntax Highlighting 적용하기 ]]>
@@ -109,7 +109,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/gatsby-syntax-highlight</guid>
         <pubDate>Sat, 16 Oct 2021 19:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ JavaScript: 클로저 ]]>
@@ -118,7 +118,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/js-closure</guid>
         <pubDate>Sat, 16 Oct 2021 14:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Javascript flat(), flatMap() 함수 ]]>
@@ -127,7 +127,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/js-flat-flat-map</guid>
         <pubDate>Tue, 29 Mar 2022 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ JavaScript: 프로토타입 ]]>
@@ -136,7 +136,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/js-prototype</guid>
         <pubDate>Mon, 18 Oct 2021 12:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Next.js에서 SourceMap 사용하기 ]]>
@@ -145,7 +145,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/next-source-map</guid>
         <pubDate>Wed, 16 Feb 2022 20:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Next.js에서 router.push 시 as 매개변수로 인한 이슈 ]]>
@@ -154,7 +154,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/nextjs-empty-router-issue</guid>
         <pubDate>Sat, 19 Feb 2022 12:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ React 18, 달라진 점은? ]]>
@@ -163,7 +163,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/react-18</guid>
         <pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 손에 잡히는 정규표현식을 읽으며, 정리 (1) ]]>
@@ -172,7 +172,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/regex-in-10m-1</guid>
         <pubDate>Sat, 02 Apr 2022 22:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 손에 잡히는 정규표현식을 읽으며, 정리 (2) ]]>
@@ -181,7 +181,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/regex-in-10m-2</guid>
         <pubDate>Sun, 03 Apr 2022 00:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ Utterances Issues를 Github Actions로 close 자동화하기 ]]>
@@ -190,7 +190,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/utterances-issue-auto-close</guid>
         <pubDate>Tue, 19 Oct 2021 12:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ 웹 표준과 웹 접근성 ]]>
@@ -199,7 +199,7 @@
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/web-standard-web-accessibility</guid>
         <pubDate>Tue, 02 Nov 2021 16:00:00 GMT</pubDate>
       </item>
-    ,
+    
       <item>
         <title>
           <![CDATA[ MacOS Todo 앱. Soft Todo ]]>
