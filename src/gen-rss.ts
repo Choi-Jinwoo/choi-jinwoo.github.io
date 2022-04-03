@@ -14,8 +14,8 @@ const extractPostRSSData = async (postPath: string) => {
     const date = RegExp(/(?<=(date: )).+/).exec(frontmatter)![0];
 
     return {
-      title,
-      date,
+      title: title.replace(/(^'|'$)/gi, ''),
+      date: date.replace(/(^'|'$)/gi, ''),
       postPath,
     };
   } catch (error) {
