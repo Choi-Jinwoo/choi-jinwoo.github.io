@@ -36,7 +36,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build && cp rss.xml public/rss.xml",
+    "build": "gatsby build && cp rss.xml public/feed.xml",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
