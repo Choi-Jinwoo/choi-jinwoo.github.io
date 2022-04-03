@@ -73,7 +73,7 @@ const run = async () => {
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
         <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-        ${items}
+        ${items.join('')}
       </channel>
     </rss>
   `;
