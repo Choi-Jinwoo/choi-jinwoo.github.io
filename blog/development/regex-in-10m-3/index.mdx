@@ -1,0 +1,140 @@
+---
+title: 손에 잡히는 정규표현식을 읽으며, 정리 (3)
+description: 정규표현식 문자 찾기, 문자 집합, 문자/집합 제외 찾기
+date: 2022-04-11
+tags: ['RegExp']
+thumbnail:
+---
+
+### 정규표현식 정리 시리즈
+
+- [정규표현식 정리 (1)](http://choi-jinwoo.github.io/post/development/regex-in-10m-1)
+- [정규표현식 정리 (2)](http://choi-jinwoo.github.io/post/development/regex-in-10m-2)
+- [정규표현식 정리 (3)](http://choi-jinwoo.github.io/post/development/regex-in-10m-3)
+
+### 위치 찾기
+
+##### 단어 경계
+
+정규표현식을 통해 `hi`라는 단어를 찾고 싶을때 `hike`라는 단어도 `hi`를 포함하고 있기에 패턴에 일치한다.
+
+```javascript
+'hi hike'.match(/hi/g); // ['hi', 'hi']
+```
+
+이럴땐 `\b` 메타문자를 이용할 수 있다.
+
+```javascript
+'hi hike'.match(/\bhi\b/g); // ['hi']
+```
+
+이렇게 앞뒤로 `\b` 메타문자를 넣어서 원하는 단어를 찾을 수 있다.
+
+##### 문자열 시작, 끝 경계
+
+`[title] description`에서 `[title]`을 뽑아오려고 한다.
+
+```javascript
+'[Hello] World[RegExp]'.match(/\[.+?\]/g); // ['[Hello]', '[RegExp]']
+```
+
+> `.+?`는 게으른 수량자로 작은 단위로 패턴에 만족되는 값을 가져온다.
+
+여기서 `[Hello]`를 뽑아오려고 하지만 뒤에 있는 `[RegExp]`도 가져와진다.
+
+이럴때 문자열 가장 앞에 있는 패턴을 가져오기 위해서 `^(캐럿)`을 사용한다.
+
+```javascript
+'[Hello] World[RegExp]'.match(/^\[.+?\]/g); // ['[Hello]']
+```
+
+비슷하게 끝의 경우도 `$(달러)`를 사용한다.
+
+```javascript
+'World[RegExp]'.match(/\[.+?\]$/g); // ['[RegExp]']
+'World[RegExp] Hello'.match(/\[.+?\]$/g); // null
+```
+
+### 하위표현식
+
+##### 하위표현식으로 묶기
+
+`hellohello` 라는 단어를 찾고 싶다고 가정해보자.
+
+```javascript
+'hellohello world hellohelloworld'.match(/\bhellohello\b/g); // ['hellohello']
+```
+
+가장 쉬운 방법은 위와 같다. 다만 `hellohellohello...`와 같이 늘어날 수 있으니 아래와 같이 짧게 표현했다.
+
+```javascript
+'hellohello world hellohelloworld'.match(/\bhello{2}\b/g); // null
+```
+
+하지만 생각과 달리 패턴을 찾을 수 없다. 그 이유는 `hello{2}`는 문자 `o`가 두번 반복되는 `helloo`에 대응되는 패턴이기 때문이다.
+
+```javascript
+'helloo'.match(/\bhello{2}\b/g); // ['helloo']
+```
+
+우리의 의도대로하기 위해선 `()`를 사용해서 묶어줘야한다.
+
+```javascript
+'hellohello world hellohelloworld'.match(/\b(hello){2}\b/g); // ['hellohello']
+```
+
+이렇게 묶을 수 있다.
+
+### 역참조
+
+역참조는 앞선 하위표현식을 사용한다는 의미이다.
+
+```javascript
+'<h1>Title</h2>'.match(/<[h][1-6]>.*?<\/[h][1-6]>/g); // ['<h1>Title</h2>']
+```
+
+이렇게 `heading` 태그의 내용은 알 수 있지만 `h1`과 `,h2`로 각 태그가 올바르지 않다.
+
+```javascript
+'<h1>Title</h2>'.match(/<[h]([1-6])>.*?<\/[h]\1>\1/g); // null
+'<h1>Title</h1>'.match(/<[h]([1-6])>.*?<\/[h]\1>/g); // ['<h1>Title</h1>']
+```
+
+이렇게 앞선 하위표현식에 대응되는 내용을 변수처럼 담아 뒤에 그대로 사용할 수 있도록 하는 것이다.
+`\1`을 통해 첫번째 하위표현식을 가져오며 `\2`는 두번째 하위표현식을 가져온다.
+
+```javascript
+'313'.replace(/(\d{3})/g, '$1-$1-$1'); // ['313-313-313']
+```
+
+이렇게 역참조를 이용해 치환도 할수 있다. (자바스크립트에선 치환시 `$1`, `$2`를 통해 역참조를 사용할 수 있다.)
+
+### 전, 후방탐색
+
+전방, 후방으로 탐색도 가능하다.
+
+전방 탐색은 특정 패턴 앞으로 찾는것이다. `<-` 방향이다.
+
+```javascript
+'http://choi-jinwoo.github.io'.match(/.+(?=(:\/\/))/g); // ['http']
+```
+
+이렇게 `://` 의 전방에 있는 부분인 `http`가 탐색된다.
+
+반대로 후방 탐색은 `->` 방향으로 탐색한다.
+
+```javascript
+'http://choi-jinwoo.github.io'.match(/(?<=(http:\/\/)).+/g); // ['choi-jinwoo.github.io']
+```
+
+함께도 사용할 수 있다.
+
+```javascript
+'http://google.com'.match(/(?<=(http:\/\/)).+(?=(\.com))/g); // ['google']
+```
+
+### 마무리
+
+손에 잡히는 정규표현식을 읽으며 글 3개에 걸쳐서 정리해봤다. 책이 두껍지 않아 처음 정규표현식을 공부할때 읽기 좋은 것 같다.
+
+정규표현식을 한번 훑어보고 싶은 사람들은 읽어보면 도움이 될 것 같다.
