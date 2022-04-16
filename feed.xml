@@ -9,7 +9,7 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Mon, 11 Apr 2022 13:58:33 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 Apr 2022 09:51:56 GMT</lastBuildDate>
         
       <item>
         <title>
@@ -135,6 +135,15 @@
         <link>https://choi-jinwoo.github.io/post/development/regex-in-10m-3</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/regex-in-10m-3</guid>
         <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ tsconfig.tsbuildinfo 파일이란? ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/development/tsbuildinfo</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/tsbuildinfo</guid>
+        <pubDate>Sat, 16 Apr 2022 00:00:00 GMT</pubDate>
       </item>
     
       <item>
