@@ -9,7 +9,7 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Sat, 16 Apr 2022 09:51:56 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 Apr 2022 14:13:59 GMT</lastBuildDate>
         
       <item>
         <title>
@@ -99,6 +99,15 @@
         <link>https://choi-jinwoo.github.io/post/development/nextjs-empty-router-issue</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/nextjs-empty-router-issue</guid>
         <pubDate>Sat, 19 Feb 2022 12:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ npm 패키지 의존성 차이 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/development/npm-dependencies</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/npm-dependencies</guid>
+        <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
       </item>
     
       <item>
