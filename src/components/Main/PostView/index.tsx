@@ -1,6 +1,7 @@
 import React from 'react';
 import { Post } from '../../../hooks/useAllPosts';
 import PostGalleryView from '../PostGalleryView';
+import PostListView from '../PostListView';
 
 export type PostViewFormats = 'gallery' | 'list';
 
@@ -17,7 +18,7 @@ const viewFormat2ComponentMap: Record<
   React.FC<BasePostViewProps>
 > = {
   gallery: PostGalleryView,
-  list: PostGalleryView,
+  list: PostListView,
 };
 
 const PostView = ({ viewFormat, ...basePostViewProps }: Props) => {

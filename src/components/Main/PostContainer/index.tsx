@@ -99,7 +99,7 @@ const PostContainer = () => {
         />
       </SearchContainer>
       {/* TODO: EmptyPost 컴포넌트 추가 */}
-      <PostView posts={searchedPosts} viewFormat="gallery" />
+      <PostView posts={searchedPosts} viewFormat="list" />
     </Container>
   );
 };
