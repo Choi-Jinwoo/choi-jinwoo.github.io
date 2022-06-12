@@ -2,20 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
-import EmptyPost from '../../EmptyPost';
-import PostItem from '../PostItem';
-
-const postFadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(80px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-`;
+import PostGalleryView from '../PostGalleryView';
 
 const Container = styled.section`
   margin-bottom: 80px;
@@ -48,24 +35,6 @@ const SearchInput = styled.input`
 
   &:focus {
     border-color: ${props => props.theme.colors.gray3};
-  }
-`;
-
-const PostContainer = styled.section`
-  display: grid;
-  row-gap: 48px;
-  animation: ${postFadeIn} 1s;
-
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: calc((${props => props.theme.inner.desktop} - 360px * 3) / 2);
-  @media ${props => props.theme.device.tablet} {
-    column-gap: calc(${props => props.theme.inner.tablet} - 360px * 2);
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media ${props => props.theme.device.mobile} {
-    justify-items: center;
-    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
@@ -114,10 +83,6 @@ const PostList = () => {
       ? posts.filter(post => isMatchPost(post, searchKeyword))
       : posts;
 
-  const postItems = searchedPosts.map(post => (
-    <PostItem key={post.id} post={post} />
-  ));
-
   return (
     <Container>
       <SearchContainer>
@@ -133,11 +98,8 @@ const PostList = () => {
           onChange={({ target }) => setSearchKeyword(target.value)}
         />
       </SearchContainer>
-      {postItems.length > 0 ? (
-        <PostContainer>{postItems}</PostContainer>
-      ) : (
-        <EmptyPost searchKeyword={searchKeyword} />
-      )}
+      {/* TODO: EmptyPostList 컴포넌트 추가 */}
+      <PostGalleryView posts={searchedPosts} />
     </Container>
   );
 };
