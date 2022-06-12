@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Post } from '../../../hooks/useAllPosts';
-import PostItem from '../PostItem';
+import PostGalleryItem from './PostGalleryItem';
+import { BasePostViewProps } from '../PostView';
 
 const postFadeIn = keyframes`
   from {
@@ -33,12 +33,12 @@ const Container = styled.section`
   }
 `;
 
-type Props = {
-  posts: Post[];
-};
+type Props = {} & BasePostViewProps;
 
 const PostGalleryView = ({ posts }: Props) => {
-  const postItems = posts.map(post => <PostItem key={post.id} post={post} />);
+  const postItems = posts.map(post => (
+    <PostGalleryItem key={post.id} post={post} />
+  ));
 
   return <Container>{postItems}</Container>;
 };
