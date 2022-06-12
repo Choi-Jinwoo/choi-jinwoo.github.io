@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
-import PostView from '../PostView';
+import PostView, { PostViewFormats } from '../PostView';
 import EmptyPost from '../../EmptyPost';
 
 const Container = styled.section`
@@ -39,6 +39,35 @@ const SearchInput = styled.input`
   }
 `;
 
+const PostToolsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+const ViewFormatButtonWrapper = styled.div`
+  display: flex;
+  algin-items: center;
+  gap: 8px;
+  margin: 12px 0;
+
+  .selected {
+    color: ${props => props.theme.colors.gray6};
+    background-color: ${props => props.theme.colors.gray2};
+    border: 1px solid ${props => props.theme.colors.gray3};
+  }
+`;
+
+const ViewFormatButton = styled.button`
+  color: ${props => props.theme.colors.gray6};
+  background-color: ${props => props.theme.colors.gray1};
+  border: 1px solid ${props => props.theme.colors.gray2};
+  border-radius: 4px;
+  width: 60px;
+  height: 28px;
+  cursor: pointer;
+`;
+
 const isMatchPost = (post: Post, keyword: string) => {
   const { title, tags } = post.frontmatter;
   if (title.toLowerCase().includes(keyword.toLowerCase())) return true;
@@ -53,6 +82,8 @@ const composeNumberOfPostsText = (prefix: string, numberOfPosts) => {
 const SEARCH_KEYWORD_QUERY_KEY = 'q';
 
 const PostContainer = () => {
+  const [currentViewFormat, setCurrentViewFormat] =
+    useState<PostViewFormats>('list');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const posts = useAllPosts();
 
@@ -93,14 +124,30 @@ const PostContainer = () => {
             searchedPosts.length
           )}
         </NumberOfPosts>
-        <SearchInput
-          placeholder="검색어를 입력하세요."
-          value={searchKeyword}
-          onChange={({ target }) => setSearchKeyword(target.value)}
-        />
+        <PostToolsWrapper>
+          <ViewFormatButtonWrapper>
+            <ViewFormatButton
+              className={currentViewFormat === 'list' ? 'selected' : ''}
+              onClick={() => setCurrentViewFormat('list')}
+            >
+              List
+            </ViewFormatButton>
+            <ViewFormatButton
+              className={currentViewFormat === 'gallery' ? 'selected' : ''}
+              onClick={() => setCurrentViewFormat('gallery')}
+            >
+              Gallery
+            </ViewFormatButton>
+          </ViewFormatButtonWrapper>
+          <SearchInput
+            placeholder="검색어를 입력하세요."
+            value={searchKeyword}
+            onChange={({ target }) => setSearchKeyword(target.value)}
+          />
+        </PostToolsWrapper>
       </SearchContainer>
       {searchedPosts.length > 0 ? (
-        <PostView posts={searchedPosts} viewFormat="list" />
+        <PostView posts={searchedPosts} viewFormat={currentViewFormat} />
       ) : (
         <EmptyPost
           description={
