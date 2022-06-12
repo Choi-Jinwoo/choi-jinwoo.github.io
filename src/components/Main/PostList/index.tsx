@@ -99,11 +99,11 @@ const PostList = () => {
   useEffect(() => {
     // Sync querystring and searchKeyword state
     if (searchKeyword === '') {
-      history.pushState({}, null, '/');
+      history.pushState({}, '', '/');
     } else {
       history.pushState(
         {},
-        null,
+        '',
         `?${SEARCH_KEYWORD_QUERY_KEY}=${searchKeyword}`
       );
     }
