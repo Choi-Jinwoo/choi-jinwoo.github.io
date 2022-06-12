@@ -9,7 +9,6 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Tag from '../Tag';
 import PostStyle from '../../styles/postStyle';
 import useSiteMetaData from '../../hooks/useSiteMetaData';
-import useAppendUtterances from '../../hooks/useAppendUtterances';
 import CodeBlock from './CodeBlock';
 import PostComment from '../PostComment';
 
@@ -117,9 +116,7 @@ const PostPage = ({ data }: Props) => {
           </TagsDateWrapper>
         </PostTitleSection>
 
-        {
-          thumbnail && <Thumbnail fluid={thumbnail.childImageSharp.fluid} />
-        }
+        {thumbnail && <Thumbnail fluid={thumbnail.childImageSharp.fluid} />}
         <PostContentSection>
           <MDXProvider
             components={{

@@ -2,9 +2,9 @@ import React, { MouseEventHandler, useState } from 'react';
 import { Link } from 'gatsby';
 import Image, { FluidObject } from 'gatsby-image';
 import styled from 'styled-components';
-import { Post } from '../../../hooks/useAllPosts';
-import Tag from '../../Tag';
-import useSiteMetaData from '../../../hooks/useSiteMetaData';
+import { Post } from '../../../../hooks/useAllPosts';
+import Tag from '../../../Tag';
+import useSiteMetaData from '../../../../hooks/useSiteMetaData';
 
 const Container = styled.article`
   position: relative;
@@ -129,7 +129,7 @@ type Props = {
   post: Post;
 };
 
-const PostItem = ({ post }: Props) => {
+const PostGalleryItem = ({ post }: Props) => {
   const [isCopied, setIsCopied] = useState(false);
   const { siteUrl } = useSiteMetaData();
 
@@ -190,4 +190,4 @@ const PostItem = ({ post }: Props) => {
   );
 };
 
-export default PostItem;
+export default PostGalleryItem;

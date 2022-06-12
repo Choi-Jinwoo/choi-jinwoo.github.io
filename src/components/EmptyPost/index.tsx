@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -12,15 +12,15 @@ const Title = styled.h1`
 `;
 
 type Props = {
-  searchKeyword: string;
-}
+  description: string;
+};
 
-const EmptyPost = ({ searchKeyword }: Props) => {
+const EmptyPost = ({ description }: Props) => {
   return (
     <Container>
-      <Title>{searchKeyword !== '' ? `'${searchKeyword}'에 대한 검색 결과가 없습니다` : '글이 작성되지 않았습니다'}</Title>
+      <Title>{description}</Title>
     </Container>
-  )
-}
+  );
+};
 
 export default EmptyPost;
