@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
 import PostView from '../PostView';
+import EmptyPost from '../../EmptyPost';
 
 const Container = styled.section`
   margin-bottom: 80px;
@@ -98,8 +99,17 @@ const PostContainer = () => {
           onChange={({ target }) => setSearchKeyword(target.value)}
         />
       </SearchContainer>
-      {/* TODO: EmptyPost 컴포넌트 추가 */}
-      <PostView posts={searchedPosts} viewFormat="list" />
+      {searchedPosts.length > 0 ? (
+        <PostView posts={searchedPosts} viewFormat="list" />
+      ) : (
+        <EmptyPost
+          description={
+            searchKeyword === ''
+              ? '작성된 글이 없습니다.'
+              : `'${searchKeyword}'에 대한 검색 결과가 없습니다`
+          }
+        />
+      )}
     </Container>
   );
 };
