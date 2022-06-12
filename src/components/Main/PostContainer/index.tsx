@@ -51,7 +51,7 @@ const composeNumberOfPostsText = (prefix: string, numberOfPosts) => {
 
 const SEARCH_KEYWORD_QUERY_KEY = 'q';
 
-const PostList = () => {
+const PostContainer = () => {
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const posts = useAllPosts();
 
@@ -98,10 +98,10 @@ const PostList = () => {
           onChange={({ target }) => setSearchKeyword(target.value)}
         />
       </SearchContainer>
-      {/* TODO: EmptyPostList 컴포넌트 추가 */}
+      {/* TODO: EmptyPost 컴포넌트 추가 */}
       <PostGalleryView posts={searchedPosts} />
     </Container>
   );
 };
 
-export default PostList;
+export default PostContainer;

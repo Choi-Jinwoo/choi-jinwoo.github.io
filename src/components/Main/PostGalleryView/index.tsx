@@ -15,7 +15,7 @@ const postFadeIn = keyframes`
   }
 `;
 
-const PostContainer = styled.section`
+const Container = styled.section`
   display: grid;
   row-gap: 48px;
   animation: ${postFadeIn} 1s;
@@ -40,7 +40,7 @@ type Props = {
 const PostGalleryView = ({ posts }: Props) => {
   const postItems = posts.map(post => <PostItem key={post.id} post={post} />);
 
-  return <PostContainer>{postItems}</PostContainer>;
+  return <Container>{postItems}</Container>;
 };
 
 export default PostGalleryView;
