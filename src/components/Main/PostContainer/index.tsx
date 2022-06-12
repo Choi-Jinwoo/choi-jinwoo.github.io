@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
-import PostGalleryView from '../PostGalleryView';
+import PostView from '../PostView';
 
 const Container = styled.section`
   margin-bottom: 80px;
@@ -99,7 +99,7 @@ const PostContainer = () => {
         />
       </SearchContainer>
       {/* TODO: EmptyPost 컴포넌트 추가 */}
-      <PostGalleryView posts={searchedPosts} />
+      <PostView posts={searchedPosts} viewFormat="gallery" />
     </Container>
   );
 };
