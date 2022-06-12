@@ -1,21 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
+import PostView, { PostViewFormats } from '../PostView';
 import EmptyPost from '../../EmptyPost';
-import PostItem from '../PostItem';
-
-const postFadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(80px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-`;
 
 const Container = styled.section`
   margin-bottom: 80px;
@@ -51,22 +39,33 @@ const SearchInput = styled.input`
   }
 `;
 
-const PostContainer = styled.section`
-  display: grid;
-  row-gap: 48px;
-  animation: ${postFadeIn} 1s;
+const PostToolsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
 
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: calc((${props => props.theme.inner.desktop} - 360px * 3) / 2);
-  @media ${props => props.theme.device.tablet} {
-    column-gap: calc(${props => props.theme.inner.tablet} - 360px * 2);
-    grid-template-columns: repeat(2, 1fr);
-  }
+const ViewFormatButtonWrapper = styled.div`
+  display: flex;
+  algin-items: center;
+  gap: 8px;
+  margin: 12px 0;
 
-  @media ${props => props.theme.device.mobile} {
-    justify-items: center;
-    grid-template-columns: repeat(1, 1fr);
+  .selected {
+    color: ${props => props.theme.colors.gray6};
+    background-color: ${props => props.theme.colors.gray2};
+    border: 1px solid ${props => props.theme.colors.gray3};
   }
+`;
+
+const ViewFormatButton = styled.button`
+  color: ${props => props.theme.colors.gray6};
+  background-color: ${props => props.theme.colors.gray1};
+  border: 1px solid ${props => props.theme.colors.gray2};
+  border-radius: 4px;
+  width: 60px;
+  height: 28px;
+  cursor: pointer;
 `;
 
 const isMatchPost = (post: Post, keyword: string) => {
@@ -82,7 +81,9 @@ const composeNumberOfPostsText = (prefix: string, numberOfPosts) => {
 
 const SEARCH_KEYWORD_QUERY_KEY = 'q';
 
-const PostList = () => {
+const PostContainer = () => {
+  const [currentViewFormat, setCurrentViewFormat] =
+    useState<PostViewFormats>('list');
   const [searchKeyword, setSearchKeyword] = useState<string>('');
   const posts = useAllPosts();
 
@@ -99,11 +100,11 @@ const PostList = () => {
   useEffect(() => {
     // Sync querystring and searchKeyword state
     if (searchKeyword === '') {
-      history.pushState({}, null, '/');
+      history.pushState({}, '', '/');
     } else {
       history.pushState(
         {},
-        null,
+        '',
         `?${SEARCH_KEYWORD_QUERY_KEY}=${searchKeyword}`
       );
     }
@@ -114,10 +115,6 @@ const PostList = () => {
       ? posts.filter(post => isMatchPost(post, searchKeyword))
       : posts;
 
-  const postItems = searchedPosts.map(post => (
-    <PostItem key={post.id} post={post} />
-  ));
-
   return (
     <Container>
       <SearchContainer>
@@ -127,19 +124,41 @@ const PostList = () => {
             searchedPosts.length
           )}
         </NumberOfPosts>
-        <SearchInput
-          placeholder="검색어를 입력하세요."
-          value={searchKeyword}
-          onChange={({ target }) => setSearchKeyword(target.value)}
-        />
+        <PostToolsWrapper>
+          <ViewFormatButtonWrapper>
+            <ViewFormatButton
+              className={currentViewFormat === 'list' ? 'selected' : ''}
+              onClick={() => setCurrentViewFormat('list')}
+            >
+              List
+            </ViewFormatButton>
+            <ViewFormatButton
+              className={currentViewFormat === 'gallery' ? 'selected' : ''}
+              onClick={() => setCurrentViewFormat('gallery')}
+            >
+              Gallery
+            </ViewFormatButton>
+          </ViewFormatButtonWrapper>
+          <SearchInput
+            placeholder="검색어를 입력하세요."
+            value={searchKeyword}
+            onChange={({ target }) => setSearchKeyword(target.value)}
+          />
+        </PostToolsWrapper>
       </SearchContainer>
-      {postItems.length > 0 ? (
-        <PostContainer>{postItems}</PostContainer>
+      {searchedPosts.length > 0 ? (
+        <PostView posts={searchedPosts} viewFormat={currentViewFormat} />
       ) : (
-        <EmptyPost searchKeyword={searchKeyword} />
+        <EmptyPost
+          description={
+            searchKeyword === ''
+              ? '작성된 글이 없습니다.'
+              : `'${searchKeyword}'에 대한 검색 결과가 없습니다`
+          }
+        />
       )}
     </Container>
   );
 };
 
-export default PostList;
+export default PostContainer;

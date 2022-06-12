@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import PostList from '../components/Main/PostList';
+import PostContainer from '../components/Main/PostContainer';
 import useSiteMetaData from '../hooks/useSiteMetaData';
 
 const IndexPage = () => {
@@ -8,7 +8,7 @@ const IndexPage = () => {
 
   return (
     <Layout path="/" title="홈" description={description}>
-      <PostList />
+      <PostContainer />
     </Layout>
   );
 };

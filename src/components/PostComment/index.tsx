@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import useAppendUtterances from '../../hooks/useAppendUtterances';
+import useAppendUtterances from './useAppendUtterances';
 
 const Container = styled.div``;
 
