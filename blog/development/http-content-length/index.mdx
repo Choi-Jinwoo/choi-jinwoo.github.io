@@ -1,0 +1,171 @@
+---
+title: 'Node.js의 http 모듈 한글 Content-Length'
+description: Node.js http 모듈에서 한글이 포함된 요청의 Content-Length
+date: 2022-06-18
+tags: ['Node.js', 'HTTP']
+thumbnail:
+---
+
+Node.js에서 `http` 요청을 보내는 방법은 다양하다.
+
+Node.js에서의 FetchAPI를 구현한 [node-fetch](https://www.npmjs.com/package/node-fetch)라이브러리나 지금은 deprecated된 [request](https://www.npmjs.com/package/request)라이브러리가 있다.
+
+이번에 Slack 봇을 만들며 http 요청을 보내야했다. `node-fetch`와 같은 라이브러리를 사용해도 되지만 외부 모듈 없이 내부 모듈로만 개발하고싶었다.
+
+## Node.js http
+
+Node.js에는 `http` 패키지가 있다. 간단히 [공식문서의 사용예제](https://nodejs.dev/learn/making-http-requests-with-nodejs)를 확인해보자.
+
+```javascript
+const https = require('https');
+
+const options = {
+  hostname: 'example.com',
+  port: 443,
+  path: '/todos',
+  method: 'GET',
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.end();
+```
+
+위와 같이 `[GET]` 요청을 할 수 있다.
+
+`[POST]` 요청도 함께 소개된다.
+
+```javascript
+const https = require('https');
+
+const data = JSON.stringify({
+  todo: 'Buy the milk',
+});
+
+const options = {
+  hostname: 'whatever.com',
+  port: 443,
+  path: '/todos',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Content-Length': data.length,
+  },
+};
+
+const req = https.request(options, res => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', d => {
+    process.stdout.write(d);
+  });
+});
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.write(data);
+req.end();
+```
+
+## 간단한 서버를 만들어 확인해보자
+
+`localhost:8080`으로 간단한 서버를 만들어 요청을 확인해보자.
+
+```javascript
+const http = require('http');
+
+// Run server
+http
+  .createServer((request, response) => {
+    let buffer = '';
+    request.on('data', chunk => {
+      buffer += chunk;
+    });
+    request.on('end', () => {
+      console.log(buffer);
+    });
+  })
+  .listen(8080);
+
+// Request from client
+const data = JSON.stringify({
+  content: '안녕',
+});
+
+const options = {
+  hostname: 'localhost',
+  port: 8080,
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Content-Length': data.length,
+  },
+};
+
+const req = http.request(options);
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.write(data);
+req.end();
+```
+
+이렇게 간단히 `http` 서버를 열어서 요청 시 `body`를 출력하도록 했다.
+
+이후 `{content: "안녕"}`를 json으로 담아 요청했다.
+
+이 결과는 `{"content":"안�`이다.
+
+왜 깨지는걸까? 이건 `Content-Length`가 단순히 `data.length`로 넣어주기 때문이다.
+
+영어로 이루어진 content는 `data.length`를 통해서 넣어준다면 큰 문제가 없다.
+
+하지만 한글은 다르기 때문에 아래와 같이 요청해야한다.
+
+```javascript
+// Request from client
+const data = JSON.stringify({
+  content: '안녕',
+});
+
+const options = {
+  hostname: 'localhost',
+  port: 8080,
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Content-Length': Buffer.byteLength(data), // <- 이 부분 변경
+  },
+};
+
+const req = http.request(options);
+
+req.on('error', error => {
+  console.error(error);
+});
+
+req.write(data);
+req.end();
+```
+
+이렇게 요청을 보냈을때 결과는 `{"content":"안녕"}`이다.
+
+[Node.js Buffer.byteLength](https://nodejs.org/api/buffer.html#static-method-bufferbytelengthstring-encoding)문서를 참고하면 `UTF-8(default)`로 변환 후 그 길이를 구하는 함수라고 한다.
+
+**즉, `UTF-8` 형식으로 변환된 길이를 `Content-Length`로 넣어줘야한다.**
+
+사실 당연한 부분인데 `Node.js`에서 해결 방법을 정리하면 좋을 것 같아서 글로 정리해봤다.
