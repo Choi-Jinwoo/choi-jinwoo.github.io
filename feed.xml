@@ -9,62 +9,8 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Wed, 13 Jul 2022 13:33:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 20 Jul 2022 12:24:11 GMT</lastBuildDate>
         
-      <item>
-        <title>
-          <![CDATA[ 2021년 회고 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/2021-retrospection</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2021-retrospection</guid>
-        <pubDate>Thu, 10 Feb 2022 18:00:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ Git 특정 브랜치 제외 전체 삭제 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/delete-all-git-branch</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/delete-all-git-branch</guid>
-        <pubDate>Sun, 27 Mar 2022 00:00:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ Git 삭제된 커밋, 브랜치 복구 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</guid>
-        <pubDate>Sat, 02 Apr 2022 13:00:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ macOS 터미널 설정 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/mac-terminal-settings</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/mac-terminal-settings</guid>
-        <pubDate>Tue, 16 Nov 2021 15:30:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ 블로그를 만들어보았다 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/new-blog-intro</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/new-blog-intro</guid>
-        <pubDate>Thu, 14 Oct 2021 00:00:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ VSCode에서 Snippets 사용하기 ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/etc/vscode-snippet</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/vscode-snippet</guid>
-        <pubDate>Sat, 26 Mar 2022 00:00:00 GMT</pubDate>
-      </item>
-    
       <item>
         <title>
           <![CDATA[ Utterances로 블로그 댓글 만들기 ]]>
@@ -90,6 +36,15 @@
         <link>https://choi-jinwoo.github.io/post/development/csr-and-ssr</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/csr-and-ssr</guid>
         <pubDate>Fri, 15 Oct 2021 15:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ CSS hover 미디어 쿼리 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/development/css-media-hover</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/css-media-hover</guid>
+        <pubDate>Wed, 20 Jul 2022 21:00:00 GMT</pubDate>
       </item>
     
       <item>
@@ -261,6 +216,60 @@
         <link>https://choi-jinwoo.github.io/post/development/web-standard-web-accessibility</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/web-standard-web-accessibility</guid>
         <pubDate>Tue, 02 Nov 2021 16:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ 2021년 회고 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/2021-retrospection</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2021-retrospection</guid>
+        <pubDate>Thu, 10 Feb 2022 18:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ Git 특정 브랜치 제외 전체 삭제 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/delete-all-git-branch</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/delete-all-git-branch</guid>
+        <pubDate>Sun, 27 Mar 2022 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ Git 삭제된 커밋, 브랜치 복구 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</guid>
+        <pubDate>Sat, 02 Apr 2022 13:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ macOS 터미널 설정 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/mac-terminal-settings</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/mac-terminal-settings</guid>
+        <pubDate>Tue, 16 Nov 2021 15:30:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ 블로그를 만들어보았다 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/new-blog-intro</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/new-blog-intro</guid>
+        <pubDate>Thu, 14 Oct 2021 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ VSCode에서 Snippets 사용하기 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/vscode-snippet</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/vscode-snippet</guid>
+        <pubDate>Sat, 26 Mar 2022 00:00:00 GMT</pubDate>
       </item>
     
       <item>
