@@ -4,6 +4,7 @@ import useAllPosts, { Post } from '../../../hooks/useAllPosts';
 import { parseQuerystring } from '../../../utils/query';
 import PostView, { PostViewFormats } from '../PostView';
 import EmptyPost from '../../EmptyPost';
+import { IoGrid, IoReorderFour } from 'react-icons/io5';
 
 const Container = styled.section`
   margin-bottom: 80px;
@@ -54,18 +55,21 @@ const ViewFormatButtonWrapper = styled.div`
   .selected {
     color: ${props => props.theme.colors.gray6};
     background-color: ${props => props.theme.colors.gray2};
-    border: 1px solid ${props => props.theme.colors.gray3};
   }
 `;
 
 const ViewFormatButton = styled.button`
-  color: ${props => props.theme.colors.gray6};
-  background-color: ${props => props.theme.colors.gray1};
-  border: 1px solid ${props => props.theme.colors.gray2};
-  border-radius: 4px;
-  width: 60px;
-  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  color: ${props => props.theme.colors.gray3};
   cursor: pointer;
+  border-radius: 4px;
 `;
 
 const isMatchPost = (post: Post, keyword: string) => {
@@ -130,13 +134,13 @@ const PostContainer = () => {
               className={currentViewFormat === 'list' ? 'selected' : ''}
               onClick={() => setCurrentViewFormat('list')}
             >
-              List
+              <IoReorderFour />
             </ViewFormatButton>
             <ViewFormatButton
               className={currentViewFormat === 'gallery' ? 'selected' : ''}
               onClick={() => setCurrentViewFormat('gallery')}
             >
-              Gallery
+              <IoGrid />
             </ViewFormatButton>
           </ViewFormatButtonWrapper>
           <SearchInput
