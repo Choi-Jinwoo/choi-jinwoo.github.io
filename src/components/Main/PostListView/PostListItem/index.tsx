@@ -10,7 +10,6 @@ const Container = styled.article`
   align-items: center;
   justify-content: space-between;
   padding: 40px 0;
-  border-bottom: 1px solid ${props => props.theme.colors.gray2};
 `;
 
 const ContentWrapper = styled.div`
