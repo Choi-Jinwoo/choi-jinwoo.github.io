@@ -33,7 +33,9 @@ type Props = {} & BasePostViewProps;
 
 const groupByYear = (posts: Post[]) => {
   return posts.reduce((groupedPosts, post) => {
-    const year = new Date(post.frontmatter.date).getFullYear();
+    const year = new Date(
+      post.frontmatter.date.replace(/\./gi, '-').slice(0, -1)
+    ).getFullYear();
 
     if (year in groupedPosts) {
       groupedPosts[year].push(post);
@@ -51,7 +53,7 @@ const PostListView = ({ posts }: Props) => {
   const postItems = Object.entries(groupedPosts)
     .map(([year, posts]) => {
       return (
-        <GroupByYearContainer>
+        <GroupByYearContainer key={year}>
           {year === new Date().getFullYear().toString() ? null : (
             <YearHadingSection>
               <YearHeading key={year}>{year}</YearHeading>
