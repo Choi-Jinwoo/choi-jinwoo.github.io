@@ -1,0 +1,68 @@
+---
+title: React Query에서 공통 query key 사용하기
+description: React Query의 query key hash function 오버라이딩 하기
+date: 2023-06-17
+tags: ['React Query', 'Global Query Key']
+thumbnail:
+---
+
+# React Query와 query key
+
+지금 회사 프로젝트에서 서버 상태 관리 도구로 `React Query`를 사용하고 있다.
+
+React Query엔 query key라는 개념이 있다.
+
+[공식문서](https://tanstack.com/query/v4/docs/react/guides/query-keys)에 따르면 React Query에선 query key를 기반으로 쿼리를 캐싱한다. query key는 직렬화(serialize)가능하고 고유한 값이어햐한다.
+
+[공식문서](https://tanstack.com/query/v4/docs/react/guides/query-keys)에서 더 자세히 확인할 수 있다.
+
+# 전역 query key 요소
+
+`전역 query key 요소`라는 이름에서 알 수 있듯이 전역적으로 적용할 query key 요소를 말한다
+
+```javascript
+const [globalState, setGlobalState] = useState('first');
+const {} = useQuery([globalState, 'get-user', userId], ...);
+const {} = useQuery([globalState, 'get-posts'], ...);
+```
+
+위 코드에서 `globalState`라는 상태는 전역 query key 요소라고 볼 수 있을 것 같다.
+
+위와 같이 모든 query에 포함되는 query key 요소를 넣어주어야하는 경우가 회사 작업 중 생기게되었다.
+
+이런 경우 모든 `useQuery`를 찾아서 넣어주어야한다. 작은 프로젝트에선 쉽게 넣을 수 있겠지만 프로젝트가 커지면 휴먼에러가 발생하기 쉽다.
+
+어떻게하면 전역적으로 query key 요소를 빠짐없이 넣어줄 수 있을까?
+
+## queryKeyHashFn
+
+공식문서에 정리되어있듯이 query key는 직렬화 가능한 값을 받는다.
+
+기본적으로 query key는 json으로 직렬화되는데 이는 `@tanstack/react-query`의 `hashQueryKey` 함수를 통해 확인하면 알 수 있다.
+
+그렇다면 `hashQueryKey` 함수를 오버라이딩(재정의) 할 수 있다면 문제를 해결할 수 있다.
+
+`QueryClient` 객체 생성 시 옵션으로 해당 함수를 오버라이딩할 수 있다.
+
+```javascript
+const [globalState, setGlobalState] = useState('first');
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryKeyHashFn(queryKey) {
+        const result =
+          typeof queryKey === 'string'
+            ? hashQueryKey([globalState, queryKey])
+            : hashQueryKey([globalState, ...queryKey]);
+
+        return result;
+      },
+    },
+  },
+});
+```
+
+이렇게 queryClient의 `queryKeyHashFn`에서 globalState를 포함하도록 수정해준다면 우리가 의도한대로 모든 query key에 `globalState` 라는 요소가 포함된다.
+
+물론 전역적으로 query key 요소를 추가하는 일은 드물것 같지만 이런 방식으로 해결할 수 있어서 글로 공유해봤다.
