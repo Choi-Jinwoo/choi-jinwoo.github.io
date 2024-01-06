@@ -9,7 +9,7 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Sat, 17 Jun 2023 04:51:21 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 06 Jan 2024 08:27:38 GMT</lastBuildDate>
         
       <item>
         <title>
@@ -27,6 +27,15 @@
         <link>https://choi-jinwoo.github.io/post/etc/2022-retrospection</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2022-retrospection</guid>
         <pubDate>Sun, 08 Jan 2023 15:30:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ 2023년 회고 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/2023-retrospection</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2023-retrospection</guid>
+        <pubDate>Sat, 06 Jan 2024 00:00:00 GMT</pubDate>
       </item>
     
       <item>
@@ -72,6 +81,15 @@
         <link>https://choi-jinwoo.github.io/post/etc/vscode-snippet</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/vscode-snippet</guid>
         <pubDate>Sat, 26 Mar 2022 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ MacOS Todo 앱. Soft Todo ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/project/soft-todo-intro</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/project/soft-todo-intro</guid>
+        <pubDate>Thu, 04 Nov 2021 20:00:00 GMT</pubDate>
       </item>
     
       <item>
@@ -306,15 +324,6 @@
         <link>https://choi-jinwoo.github.io/post/development/web-standard-web-accessibility</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/development/web-standard-web-accessibility</guid>
         <pubDate>Tue, 02 Nov 2021 16:00:00 GMT</pubDate>
-      </item>
-    
-      <item>
-        <title>
-          <![CDATA[ MacOS Todo 앱. Soft Todo ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/project/soft-todo-intro</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/project/soft-todo-intro</guid>
-        <pubDate>Thu, 04 Nov 2021 20:00:00 GMT</pubDate>
       </item>
     
       </channel>
