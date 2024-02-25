@@ -9,7 +9,7 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Sat, 06 Jan 2024 08:27:38 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 25 Feb 2024 10:19:40 GMT</lastBuildDate>
         
       <item>
         <title>
@@ -54,6 +54,15 @@
         <link>https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/git-restore-deleted-branch</guid>
         <pubDate>Sat, 02 Apr 2022 13:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ Github 이메일 notification 라우팅하기 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/github-email-route</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/github-email-route</guid>
+        <pubDate>Sun, 25 Feb 2024 00:00:00 GMT</pubDate>
       </item>
     
       <item>
