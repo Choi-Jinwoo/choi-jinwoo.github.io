@@ -9,17 +9,8 @@
         </description>
         <link>https://choi-jinwoo.github.io</link>
         <generator>GatsbyJS</generator>
-        <lastBuildDate>Sat, 15 Jun 2024 06:51:29 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 19 Jan 2025 08:20:53 GMT</lastBuildDate>
         
-      <item>
-        <title>
-          <![CDATA[ MacOS Todo 앱. Soft Todo ]]>
-        </title>
-        <link>https://choi-jinwoo.github.io/post/project/soft-todo-intro</link>
-        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/project/soft-todo-intro</guid>
-        <pubDate>Thu, 04 Nov 2021 20:00:00 GMT</pubDate>
-      </item>
-    
       <item>
         <title>
           <![CDATA[ Utterances로 블로그 댓글 만들기 ]]>
@@ -265,6 +256,15 @@
     
       <item>
         <title>
+          <![CDATA[ MacOS Todo 앱. Soft Todo ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/project/soft-todo-intro</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/project/soft-todo-intro</guid>
+        <pubDate>Thu, 04 Nov 2021 20:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
           <![CDATA[ 2021년 회고 ]]>
         </title>
         <link>https://choi-jinwoo.github.io/post/etc/2021-retrospection</link>
@@ -288,6 +288,15 @@
         <link>https://choi-jinwoo.github.io/post/etc/2023-retrospection</link>
         <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2023-retrospection</guid>
         <pubDate>Sat, 06 Jan 2024 00:00:00 GMT</pubDate>
+      </item>
+    
+      <item>
+        <title>
+          <![CDATA[ 2024년 회고 ]]>
+        </title>
+        <link>https://choi-jinwoo.github.io/post/etc/2024-retrospection</link>
+        <guid isPermaLink="false">https://choi-jinwoo.github.io/post/etc/2024-retrospection</guid>
+        <pubDate>Sun, 29 Dec 2024 00:00:00 GMT</pubDate>
       </item>
     
       <item>
